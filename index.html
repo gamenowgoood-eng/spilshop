@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GameVault | Spil & Konsoller</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="header">
+    <div class="container header-inner">
+      <div class="logo">GameVault</div>
+      <nav class="nav">
+        <a href="#">Spil</a>
+        <a href="#">Konsoller</a>
+        <a href="#">Tilbud</a>
+      </nav>
+      <div class="cart-btn">🛒 <span id="cart-count">0</span></div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <h1>Spil & Konsoller</h1>
+      <p>Find de nyeste spil og konsoller til de bedste priser</p>
+    </div>
+  </section>
+
+  <main class="container">
+    <div class="filters">
+      <button class="filter-btn active" data-filter="all">Alle</button>
+      <button class="filter-btn" data-filter="spil">Spil</button>
+      <button class="filter-btn" data-filter="konsol">Konsoller</button>
+    </div>
+
+    <div class="product-grid" id="product-grid">
+      <!-- Produkter indsættes her via JS -->
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© 2026 GameVault · Levering til hele Danmark</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
