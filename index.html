@@ -16,7 +16,13 @@
         <a href="#products">Products</a>
         <a href="#about">About</a>
       </nav>
-      <div class="cart-btn">🛒 <span id="cart-count">0</span></div>
+      <div class="header-right">
+        <select id="lang-select">
+          <option value="en">English</option>
+          <option value="da">Dansk</option>
+        </select>
+        <div class="cart-btn">🛒 <span id="cart-count">0</span></div>
+      </div>
     </div>
   </header>
 
@@ -31,15 +37,30 @@
     <div class="container deals-grid">
       <div class="deal gta">
         <h2>GTA 6 Pre-order</h2>
-        <p>Big offer coming soon</p>
-        <button class="btn">Notify me</button>
+        <p>Only €10 off · Free shipping</p>
+        <p class="new">€59</p>
+        <p class="free">🚚 Free shipping worldwide</p>
+        <button class="btn" onclick="buy()">Pre-order</button>
       </div>
       <div class="deal ps5">
         <h2>PS5 + GTA Bundle</h2>
-        <p class="old">5.199 kr</p>
-        <p class="new">4.299 kr</p>
+        <p class="old">€699</p>
+        <p class="new">€579</p>
         <p>PS5 + DualSense</p>
         <button class="btn" onclick="buy()">Buy now</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="shipping">
+    <div class="container">
+      <h3>Worldwide shipping</h3>
+      <p>We ship to all countries including USA, Europe and Asia.</p>
+      <div class="carriers">
+        <span>DHL</span>
+        <span>UPS</span>
+        <span>FedEx</span>
+        <span>PostNord</span>
       </div>
     </div>
   </section>
@@ -58,17 +79,18 @@
 
     <section id="about" class="about">
       <h2>About</h2>
-      <p>Game Good Now is an international store for games and consoles. Secure payment and fast shipping.</p>
+      <p>Game Good Now is an international store for games, consoles and accessories. Secure payment and fast shipping worldwide.</p>
       <div class="badges">
         <span>🔒 Secure payment</span>
-        <span>🚚 Fast shipping</span>
-        <span>🌍 International</span>
+        <span>🚚 Free shipping on GTA 6</span>
+        <span>🌍 Ships to USA & worldwide</span>
+        <span>↩️ 14-day returns</span>
       </div>
     </section>
   </main>
 
   <footer>
-    <p>© 2026 Game Good Now</p>
+    <p>© 2026 Game Good Now · Prices in EUR · Free shipping on GTA 6</p>
   </footer>
 
   <script src="script.js"></script>

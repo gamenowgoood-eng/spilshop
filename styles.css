@@ -6,6 +6,8 @@ body { font-family: Inter, system-ui, sans-serif; background: #f8fafc; color: #1
 .header-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; }
 .logo { font-weight: 700; font-size: 1.4rem; color: #2563eb; }
 .nav a { margin: 0 12px; text-decoration: none; color: #334155; font-weight: 500; }
+.header-right { display: flex; align-items: center; gap: 12px; }
+#lang-select { padding: 6px 10px; border: 1px solid #d1d5db; border-radius: 6px; }
 .cart-btn { background: #2563eb; color: #fff; padding: 8px 14px; border-radius: 8px; font-weight: 600; }
 
 .hero { background: #2563eb; color: #fff; padding: 48px 0; text-align: center; }
@@ -19,7 +21,12 @@ body { font-family: Inter, system-ui, sans-serif; background: #f8fafc; color: #1
 .deal h2 { margin-bottom: 6px; }
 .old { text-decoration: line-through; opacity: 0.8; font-size: 0.9rem; }
 .new { font-size: 1.6rem; font-weight: 700; margin: 4px 0; }
+.free { font-weight: 600; margin: 8px 0; }
 .btn { background: #fff; color: #111; border: 0; padding: 10px 20px; border-radius: 8px; font-weight: 700; cursor: pointer; margin-top: 10px; }
+
+.shipping { background: #f1f5f9; padding: 28px 0; text-align: center; }
+.shipping h3 { margin-bottom: 6px; }
+.carriers { display: flex; justify-content: center; gap: 20px; margin-top: 12px; font-weight: 600; color: #334155; flex-wrap: wrap; }
 
 h2 { margin: 28px 0 14px; }
 .filters { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
