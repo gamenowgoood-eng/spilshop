@@ -1,21 +1,20 @@
 <!DOCTYPE html>
-<html lang="da">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GameVault | Spil & Konsoller</title>
+  <title>Game Good Now | Games & Consoles</title>
   <link rel="stylesheet" href="styles.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
   <header class="header">
     <div class="container header-inner">
-      <div class="logo">GameVault</div>
+      <div class="logo">Game Good Now</div>
       <nav class="nav">
-        <a href="#">Spil</a>
-        <a href="#">Konsoller</a>
-        <a href="#">Tilbud</a>
+        <a href="#deals">Deals</a>
+        <a href="#products">Products</a>
+        <a href="#about">About</a>
       </nav>
       <div class="cart-btn">🛒 <span id="cart-count">0</span></div>
     </div>
@@ -23,27 +22,53 @@
 
   <section class="hero">
     <div class="container">
-      <h1>Spil & Konsoller</h1>
-      <p>Find de nyeste spil og konsoller til de bedste priser</p>
+      <h1>Games & Consoles</h1>
+      <p>Great prices · Fast shipping · Secure payment</p>
+    </div>
+  </section>
+
+  <section id="deals" class="deals">
+    <div class="container deals-grid">
+      <div class="deal gta">
+        <h2>GTA 6 Pre-order</h2>
+        <p>Big offer coming soon</p>
+        <button class="btn">Notify me</button>
+      </div>
+      <div class="deal ps5">
+        <h2>PS5 + GTA Bundle</h2>
+        <p class="old">5.199 kr</p>
+        <p class="new">4.299 kr</p>
+        <p>PS5 + DualSense</p>
+        <button class="btn" onclick="buy()">Buy now</button>
+      </div>
     </div>
   </section>
 
   <main class="container">
-    <div class="filters">
-      <button class="filter-btn active" data-filter="all">Alle</button>
-      <button class="filter-btn" data-filter="spil">Spil</button>
-      <button class="filter-btn" data-filter="konsol">Konsoller</button>
-    </div>
+    <section id="products">
+      <h2>Products</h2>
+      <div class="filters">
+        <button class="filter active" data-filter="all">All</button>
+        <button class="filter" data-filter="spil">Games</button>
+        <button class="filter" data-filter="konsol">Consoles</button>
+        <button class="filter" data-filter="tilbehor">Accessories</button>
+      </div>
+      <div class="grid" id="grid"></div>
+    </section>
 
-    <div class="product-grid" id="product-grid">
-      <!-- Produkter indsættes her via JS -->
-    </div>
+    <section id="about" class="about">
+      <h2>About</h2>
+      <p>Game Good Now is an international store for games and consoles. Secure payment and fast shipping.</p>
+      <div class="badges">
+        <span>🔒 Secure payment</span>
+        <span>🚚 Fast shipping</span>
+        <span>🌍 International</span>
+      </div>
+    </section>
   </main>
 
-  <footer class="footer">
-    <div class="container">
-      <p>© 2026 GameVault · Levering til hele Danmark</p>
-    </div>
+  <footer>
+    <p>© 2026 Game Good Now</p>
   </footer>
 
   <script src="script.js"></script>
