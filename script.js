@@ -75,28 +75,6 @@ const translations = {
     "about-title": "Sobre", "about-text": "Game Good Now é uma loja internacional de jogos, consoles e acessórios.",
     "badge-free": "🚚 Frete grátis no GTA 6", "badge-world": "🌍 Envio para EUA e mundo",
     "add": "Adicionar ao carrinho", "buy": "Comprar agora"
-  },
-  da: {
-    "nav-deals": "Tilbud", "nav-products": "Produkter", "nav-about": "Om os",
-    "hero-title": "Spil & Konsoller", "hero-sub": "Gode priser · Hurtig levering · Sikker betaling",
-    "gta-title": "GTA 6 Forudbestilling", "gta-text": "Kun ca. 100 kr under · Gratis fragt", "free-ship": "🚚 Gratis fragt worldwide",
-    "preorder-btn": "Forudbestil", "ps5-title": "PS5 + GTA Pakke", "buy-btn": "Køb nu",
-    "ship-title": "Verdensomspændende levering", "ship-text": "Vi sender til alle lande inklusive USA, Europa og Asien.",
-    "products-title": "Produkter", "filter-all": "Alle", "filter-games": "Spil", "filter-consoles": "Konsoller", "filter-acc": "Tilbehør",
-    "about-title": "Om os", "about-text": "Game Good Now er en international shop med spil, konsoller og tilbehør.",
-    "badge-free": "🚚 Gratis fragt på GTA 6", "badge-world": "🌍 Sender til USA & worldwide",
-    "add": "Læg i kurv", "buy": "Køb nu"
-  },
-  sv: {
-    "nav-deals": "Erbjudanden", "nav-products": "Produkter", "nav-about": "Om oss",
-    "hero-title": "Spel & Konsoler", "hero-sub": "Bra priser · Snabb leverans · Säker betalning",
-    "gta-title": "GTA 6 Förbeställning", "gta-text": "Bara ca 100 kr under · Fri frakt", "free-ship": "🚚 Fri frakt worldwide",
-    "preorder-btn": "Förbeställ", "ps5-title": "PS5 + GTA Paket", "buy-btn": "Köp nu",
-    "ship-title": "Världsomspännande leverans", "ship-text": "Vi skickar till alla länder inklusive USA, Europa och Asien.",
-    "products-title": "Produkter", "filter-all": "Alla", "filter-games": "Spel", "filter-consoles": "Konsoler", "filter-acc": "Tillbehör",
-    "about-title": "Om oss", "about-text": "Game Good Now är en internationell butik för spel, konsoler och tillbehör.",
-    "badge-free": "🚚 Fri frakt på GTA 6", "badge-world": "🌍 Skickar till USA & världen",
-    "add": "Lägg i varukorg", "buy": "Köp nu"
   }
 };
 
@@ -132,7 +110,7 @@ const products = [
   { name: "God of War Ragnarök", price: 54, img: "IMG_9100.jpg", cat: "spil" },
   { name: "PlayStation 5", price: 539, img: "IMG_9116.jpg", cat: "konsol" },
   { name: "Xbox Series X", price: 579, img: "IMG_9117.jpg", cat: "konsol" },
-  { name: "Nintendo Switch OLED", price: 335, img: "IMG_9116.jpg", cat: "konsol" },
+  { name: "Nintendo Switch OLED", price: 335, img: "switch-oled.jpg", cat: "konsol" },
   { name: "DualSense Controller", price: 74, img: "dualsense.jpg", cat: "tilbehor" },
   { name: "Xbox Wireless Controller", price: 67, img: "xbox-controller.jpg", cat: "tilbehor" },
   { name: "Nintendo Switch Pro Controller", price: 80, img: "switch-pro.jpg", cat: "tilbehor" },
