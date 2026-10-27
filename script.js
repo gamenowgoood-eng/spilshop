@@ -2,7 +2,7 @@ const translations = {
   en: {
     "nav-deals": "Deals", "nav-products": "Products", "nav-about": "About",
     "hero-title": "Games & Consoles", "hero-sub": "Great prices · Fast shipping · Secure payment",
-    "gta-title": "GTA 6 Pre-order", "gta-text": "Only €10 off · Free shipping", "free-ship": "🚚 Free shipping worldwide",
+    "gta-title": "GTA 6 Pre-order", "gta-text": "Special price · Free shipping", "free-ship": "🚚 Free shipping worldwide",
     "preorder-btn": "Pre-order", "ps5-title": "PS5 + GTA Bundle", "buy-btn": "Buy now",
     "ship-title": "Worldwide shipping", "ship-text": "We ship to all countries including USA, Europe and Asia.",
     "products-title": "Products", "filter-all": "All", "filter-games": "Games", "filter-consoles": "Consoles", "filter-acc": "Accessories",
