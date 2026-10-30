@@ -12,9 +12,9 @@
     <div class="container header-inner">
       <div class="logo">Game Good Now</div>
       <nav class="nav">
-        <a href="#deals" data-lang="nav-deals">Deals</a>
-        <a href="#products" data-lang="nav-products">Products</a>
-        <a href="#about" data-lang="nav-about">About</a>
+        <a href="#deals">Deals</a>
+        <a href="#products">Products</a>
+        <a href="#about">About</a>
       </nav>
       <div class="header-right">
         <select id="lang-select">
@@ -26,41 +26,43 @@
           <option value="fr">Français</option>
           <option value="pt">Português</option>
         </select>
-        <div class="cart-btn">🛒 <span id="cart-count">0</span></div>
+        <div class="cart-btn" onclick="openCart()">🛒 <span id="cart-count">0</span></div>
       </div>
     </div>
   </header>
 
   <section class="hero">
     <div class="container">
-      <h1 data-lang="hero-title">Games & Consoles</h1>
-      <p data-lang="hero-sub">Great prices · Fast shipping · Secure payment</p>
+      <h1>Games & Consoles</h1>
+      <p>Great prices · Fast shipping · Secure payment</p>
     </div>
   </section>
 
   <section id="deals" class="deals">
     <div class="container deals-grid">
       <div class="deal">
-        <h2 data-lang="gta-title">GTA 6 Pre-order</h2>
-        <p data-lang="gta-text">Special price · Free shipping</p>
+        <div class="deal-badge">HOT</div>
+        <h2>GTA 6 Pre-order</h2>
+        <p>Special price · Free shipping</p>
         <p class="new">€69</p>
-        <p class="free" data-lang="free-ship">🚚 Free shipping worldwide</p>
-        <button class="btn" onclick="buy()" data-lang="preorder-btn">Pre-order</button>
+        <p class="free">🚚 Free shipping worldwide</p>
+        <button class="btn" onclick="addDeal('GTA 6 Pre-order', 69)">Pre-order</button>
       </div>
       <div class="deal">
-        <h2 data-lang="ps5-title">PS5 + GTA Bundle</h2>
+        <div class="deal-badge">BUNDLE</div>
+        <h2>PS5 + GTA Bundle</h2>
         <p class="old">€699</p>
         <p class="new">€579</p>
         <p>PS5 + DualSense</p>
-        <button class="btn" onclick="buy()" data-lang="buy-btn">Buy now</button>
+        <button class="btn" onclick="addDeal('PS5 + GTA Bundle', 579)">Buy now</button>
       </div>
     </div>
   </section>
 
   <section class="shipping">
     <div class="container">
-      <h3 data-lang="ship-title">Worldwide shipping</h3>
-      <p data-lang="ship-text">We ship to all countries including USA, Europe and Asia.</p>
+      <h3>Worldwide shipping</h3>
+      <p>We ship to all countries including USA, Europe and Asia.</p>
       <div class="carriers">
         <span>DHL</span>
         <span>UPS</span>
@@ -71,23 +73,23 @@
 
   <main class="container">
     <section id="products">
-      <h2 data-lang="products-title">Products</h2>
+      <h2>Products</h2>
       <div class="filters">
-        <button class="filter active" data-filter="all" data-lang="filter-all">All</button>
-        <button class="filter" data-filter="spil" data-lang="filter-games">Games</button>
-        <button class="filter" data-filter="konsol" data-lang="filter-consoles">Consoles</button>
-        <button class="filter" data-filter="tilbehor" data-lang="filter-acc">Accessories</button>
+        <button class="filter active" data-filter="all">All</button>
+        <button class="filter" data-filter="spil">Games</button>
+        <button class="filter" data-filter="konsol">Consoles</button>
+        <button class="filter" data-filter="tilbehor">Accessories</button>
       </div>
       <div class="grid" id="grid"></div>
     </section>
 
     <section id="about" class="about">
-      <h2 data-lang="about-title">About</h2>
-      <p data-lang="about-text">Game Good Now is an international store for games, consoles and accessories. Secure payment and fast shipping worldwide.</p>
+      <h2>About</h2>
+      <p>Game Good Now is an international store for games, consoles and accessories. Secure payment and fast shipping worldwide.</p>
       <div class="badges">
         <span>🔒 Secure payment</span>
-        <span data-lang="badge-free">🚚 Free shipping on GTA 6</span>
-        <span data-lang="badge-world">🌍 Ships to USA & worldwide</span>
+        <span>🚚 Free shipping on GTA 6</span>
+        <span>🌍 Ships to USA & worldwide</span>
       </div>
     </section>
   </main>
@@ -95,6 +97,16 @@
   <footer>
     <p>© 2026 Game Good Now · Prices in EUR</p>
   </footer>
+
+  <div id="cart-modal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeCart()">&times;</span>
+      <h2>Your Cart</h2>
+      <div id="cart-items"></div>
+      <p id="cart-total" style="font-weight:700; margin:16px 0;">Total: €0</p>
+      <button class="btn" style="width:100%;" onclick="alert('Payment link coming soon!')">Checkout</button>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>

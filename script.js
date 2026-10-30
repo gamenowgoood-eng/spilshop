@@ -173,3 +173,38 @@ document.getElementById("lang-select").onchange = (e) => {
 
 updateTexts();
 render();
+
+let cartItems = [];
+let cartTotal = 0;
+
+function addDeal(name, price) {
+  cartItems.push({ name, price });
+  cartTotal += price;
+  cart++;
+  document.getElementById("cart-count").textContent = cart;
+  alert(name + " added to cart");
+}
+
+function openCart() {
+  const modal = document.getElementById("cart-modal");
+  const itemsDiv = document.getElementById("cart-items");
+  itemsDiv.innerHTML = "";
+  if (cartItems.length === 0) {
+    itemsDiv.innerHTML = "<p>Your cart is empty.</p>";
+  } else {
+    cartItems.forEach(item => {
+      itemsDiv.innerHTML += `<p>${item.name} — €${item.price}</p>`;
+    });
+  }
+  document.getElementById("cart-total").textContent = "Total: €" + cartTotal;
+  modal.style.display = "block";
+}
+
+function closeCart() {
+  document.getElementById("cart-modal").style.display = "none";
+}
+
+window.onclick = function(event) {
+  const modal = document.getElementById("cart-modal");
+  if (event.target == modal) modal.style.display = "none";
+};
