@@ -149,7 +149,8 @@ function render(filter = "all") {
       </div>
     `;
     card.querySelector(".add").onclick = () => {
-      addDeal(p.name, p.price);
+      const qty = parseInt(prompt("How many?", "1")) || 1;
+      addDeal(p.name, p.price, qty);
     };
     card.querySelector(".buy").onclick = buy;
     grid.appendChild(card);
@@ -176,17 +177,28 @@ render();
 let cartItems = [];
 let cartTotal = 0;
 
-function addDeal(name, price) {
+function addDeal(name, price, qty = 1) {
   const existing = cartItems.find(item => item.name === name);
   if (existing) {
-    existing.qty++;
+    existing.qty += qty;
   } else {
-    cartItems.push({ name, price, qty: 1 });
+    cartItems.push({ name, price, qty });
   }
-  cartTotal += price;
-  cart++;
+  cartTotal += price * qty;
+  cart += qty;
   document.getElementById("cart-count").textContent = cart;
-  alert(name + " added to cart");
+  alert(name + " × " + qty + " added to cart");
+}
+
+function removeItem(name) {
+  const item = cartItems.find(i => i.name === name);
+  if (item) {
+    cartTotal -= item.price * item.qty;
+    cart -= item.qty;
+    cartItems = cartItems.filter(i => i.name !== name);
+    document.getElementById("cart-count").textContent = cart;
+    openCart();
+  }
 }
 
 function openCart() {
