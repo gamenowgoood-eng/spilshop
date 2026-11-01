@@ -149,8 +149,7 @@ function render(filter = "all") {
       </div>
     `;
     card.querySelector(".add").onclick = () => {
-      cart++;
-      cartCount.textContent = cart;
+      addDeal(p.name, p.price);
     };
     card.querySelector(".buy").onclick = buy;
     grid.appendChild(card);
@@ -178,7 +177,12 @@ let cartItems = [];
 let cartTotal = 0;
 
 function addDeal(name, price) {
-  cartItems.push({ name, price });
+  const existing = cartItems.find(item => item.name === name);
+  if (existing) {
+    existing.qty++;
+  } else {
+    cartItems.push({ name, price, qty: 1 });
+  }
   cartTotal += price;
   cart++;
   document.getElementById("cart-count").textContent = cart;
@@ -193,7 +197,10 @@ function openCart() {
     itemsDiv.innerHTML = "<p>Your cart is empty.</p>";
   } else {
     cartItems.forEach(item => {
-      itemsDiv.innerHTML += `<p>${item.name} — €${item.price}</p>`;
+      itemsDiv.innerHTML += `<div style="display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid #eee;">
+        <span>${item.name} × ${item.qty}</span>
+        <span>€${item.price * item.qty}</span>
+      </div>`;
     });
   }
   document.getElementById("cart-total").textContent = "Total: €" + cartTotal;
