@@ -190,6 +190,28 @@ function addDeal(name, price, qty = 1) {
   alert(name + " × " + qty + " added to cart");
 }
 
+function changeQty(name, delta) {
+  const item = cartItems.find(i => i.name === name);
+  if (!item) return;
+  item.qty += delta;
+  if (item.qty < 1) {
+    removeItem(name);
+    return;
+  }
+  cartTotal += item.price * delta;
+  cart += delta;
+  document.getElementById("cart-count").textContent = cart;
+  openCart();
+}
+
+function clearCart() {
+  cartItems = [];
+  cartTotal = 0;
+  cart = 0;
+  document.getElementById("cart-count").textContent = 0;
+  openCart();
+}
+
 function removeItem(name) {
   const item = cartItems.find(i => i.name === name);
   if (item) {
@@ -209,9 +231,15 @@ function openCart() {
     itemsDiv.innerHTML = "<p>Your cart is empty.</p>";
   } else {
     cartItems.forEach(item => {
-      itemsDiv.innerHTML += `<div style="display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid #eee;">
-        <span>${item.name} × ${item.qty}</span>
+      itemsDiv.innerHTML += `<div style="display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px solid #eee;">
+        <span>${item.name}</span>
+        <div style="display:flex; align-items:center; gap:8px;">
+          <button onclick="changeQty('${item.name}', -1)" style="background:#eee; border:0; width:28px; height:28px; border-radius:6px; cursor:pointer;">−</button>
+          <span>${item.qty}</span>
+          <button onclick="changeQty('${item.name}', 1)" style="background:#eee; border:0; width:28px; height:28px; border-radius:6px; cursor:pointer;">+</button>
+        </div>
         <span>€${item.price * item.qty}</span>
+        <button onclick="removeItem('${item.name}')" style="background:#eee; border:0; padding:4px 10px; border-radius:6px; cursor:pointer;">Remove</button>
       </div>`;
     });
   }
