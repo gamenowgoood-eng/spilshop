@@ -144,6 +144,7 @@ function render(filter = "all") {
       <div class="info">
         <h3>${p.name}</h3>
         <div class="price">€${p.price}</div>
+        <div style="font-size:0.85rem; color:#666; margin-bottom:4px;">★★★★☆ 4.5</div>
         <div style="font-size:0.8rem; color:#666; margin-bottom:8px;">In stock · Ships in 2-3 days</div>
         <button class="add">${t("add")}</button>
         <button class="buy">${t("buy")}</button>
