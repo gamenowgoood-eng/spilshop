@@ -15,13 +15,13 @@ body { font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe 
 .hero p { font-size: 1.05rem; color: #555; }
 
 .deals { padding: 40px 0; background: #fff; }
-.deals-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
-.deal { background: #fff; border: 1px solid #eee; border-radius: 16px; padding: 24px; text-align: center; box-shadow: 0 2px 12px rgba(0,0,0,0.04); }
-.deal h3 { font-size: 1.45rem; font-weight: 700; margin-bottom: 6px; }
-.deal-sub { color: #666; font-size: 0.95rem; margin-bottom: 12px; }
-.deal-price { font-size: 2.3rem; font-weight: 700; margin: 10px 0; }
-.deal-price .old { text-decoration: line-through; color: #999; font-size: 1.1rem; margin-right: 8px; font-weight: 500; }
-.deal-note { font-weight: 500; color: #333; margin: 10px 0 18px; }
+.deals-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+.deal { background: #fff; border: 1px solid #e8e8e8; border-radius: 12px; padding: 28px 20px; text-align: center; }
+.deal h3 { font-size: 1.5rem; font-weight: 700; margin-bottom: 8px; }
+.deal-sub { color: #666; font-size: 0.95rem; margin-bottom: 14px; }
+.deal-price { font-size: 2.4rem; font-weight: 700; margin: 12px 0; }
+.deal-price .old { text-decoration: line-through; color: #aaa; font-size: 1.2rem; margin-right: 10px; font-weight: 500; }
+.deal-note { font-weight: 500; color: #333; margin: 12px 0 20px; }
 .btn { background: #111; color: #fff; border: 0; padding: 12px 28px; border-radius: 10px; font-weight: 600; cursor: pointer; }
 .btn:hover { background: #222; }
 
