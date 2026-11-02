@@ -39,22 +39,24 @@
   </section>
 
   <section id="deals" class="deals">
-    <div class="container deals-grid">
-      <div class="deal">
-        <div class="deal-badge">HOT</div>
-        <h2>GTA 6 Pre-order</h2>
-        <p>Special price · Free shipping</p>
-        <p class="new">€69</p>
-        <p class="free">🚚 Free shipping worldwide</p>
-        <button class="btn" onclick="addDeal('GTA 6 Pre-order', 69, 1)">Pre-order</button>
-      </div>
-      <div class="deal">
-        <div class="deal-badge">BUNDLE</div>
-        <h2>PS5 + GTA Bundle</h2>
-        <p class="old">€699</p>
-        <p class="new">€579</p>
-        <p>PS5 + DualSense</p>
-        <button class="btn" onclick="addDeal('PS5 + GTA Bundle', 579)">Buy now</button>
+    <div class="container">
+      <h2 style="text-align:center; margin-bottom:24px;">Current offers</h2>
+      <div class="deals-grid">
+        <div class="deal">
+          <div class="deal-img" style="background:#f5f5f5; height:180px; border-radius:12px; margin-bottom:16px; display:flex; align-items:center; justify-content:center; font-size:3rem;">🎮</div>
+          <h3>GTA 6 Pre-order</h3>
+          <p class="deal-sub">Special price · Free shipping</p>
+          <div class="deal-price">€69</div>
+          <p class="deal-note">🚚 Free shipping worldwide</p>
+          <button class="btn" onclick="addDeal('GTA 6 Pre-order', 69, 1)">Pre-order</button>
+        </div>
+        <div class="deal">
+          <div class="deal-img" style="background:#f5f5f5; height:180px; border-radius:12px; margin-bottom:16px; display:flex; align-items:center; justify-content:center; font-size:3rem;">🎮</div>
+          <h3>PS5 + GTA Bundle</h3>
+          <p class="deal-sub">PS5 + DualSense</p>
+          <div class="deal-price"><span class="old">€699</span> €579</div>
+          <button class="btn" onclick="addDeal('PS5 + GTA Bundle', 579, 1)">Buy now</button>
+        </div>
       </div>
     </div>
   </section>
