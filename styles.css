@@ -15,16 +15,15 @@ body { font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe 
 .hero p { font-size: 1.05rem; color: #555; }
 
 .deals { padding: 32px 0; background: #fff; }
-.promo-banner { display: flex; align-items: center; justify-content: space-between; background: #111; color: #fff; border-radius: 16px; padding: 36px 32px; margin-bottom: 16px; }
-.promo-banner.secondary { background: #f5f5f5; color: #111; }
-.promo-content h2 { font-size: 2.2rem; font-weight: 700; margin-bottom: 6px; }
-.promo-content p { opacity: 0.85; margin-bottom: 12px; }
-.promo-badge { display: inline-block; background: #fff; color: #111; font-size: 0.7rem; font-weight: 700; padding: 4px 10px; border-radius: 20px; margin-bottom: 10px; letter-spacing: 0.5px; }
+.promo-banner { display: flex; align-items: center; background: #111; color: #fff; border-radius: 16px; padding: 40px 36px; margin-bottom: 16px; }
+.promo-banner.secondary { background: #f7f7f7; color: #111; }
+.promo-content h2 { font-size: 2.4rem; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.5px; }
+.promo-content p { opacity: 0.8; margin-bottom: 14px; font-size: 1.05rem; }
+.promo-badge { display: inline-block; background: #fff; color: #111; font-size: 0.72rem; font-weight: 700; padding: 5px 12px; border-radius: 20px; margin-bottom: 12px; letter-spacing: 0.6px; }
 .promo-banner.secondary .promo-badge { background: #111; color: #fff; }
-.promo-price { font-size: 2.6rem; font-weight: 700; margin: 8px 0 16px; }
-.promo-price .old { text-decoration: line-through; font-size: 1.2rem; opacity: 0.6; margin-right: 8px; font-weight: 500; }
-.promo-visual { font-size: 5rem; opacity: 0.9; }
-.promo-banner .btn { background: #fff; color: #111; }
+.promo-price { font-size: 2.8rem; font-weight: 700; margin: 10px 0 18px; }
+.promo-price .old { text-decoration: line-through; font-size: 1.3rem; opacity: 0.55; margin-right: 10px; font-weight: 500; }
+.promo-banner .btn { background: #fff; color: #111; padding: 12px 32px; }
 .promo-banner.secondary .btn { background: #111; color: #fff; }
 .btn { background: #111; color: #fff; border: 0; padding: 12px 28px; border-radius: 10px; font-weight: 600; cursor: pointer; }
 .btn:hover { background: #222; }
