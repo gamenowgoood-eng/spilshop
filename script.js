@@ -79,18 +79,13 @@ const translations = {
 };
 
 let currentLang = "en";
-
-function t(key) {
-  return translations[currentLang][key] || translations.en[key] || key;
-}
+function t(key) { return translations[currentLang]?.[key] || translations.en[key] || key; }
 
 function updateTexts() {
-  document.querySelectorAll("[data-lang]").forEach(el => {
-    const key = el.getAttribute("data-lang");
-    if (translations[currentLang][key]) el.textContent = translations[currentLang][key];
+  document.querySelectorAll("[data-i18n]").forEach(el => {
+    const key = el.getAttribute("data-i18n");
+    el.textContent = t(key);
   });
-  document.documentElement.lang = currentLang;
-  document.documentElement.dir = currentLang === "ar" ? "rtl" : "ltr";
 }
 
 const products = [
@@ -122,23 +117,20 @@ const products = [
   { name: "Gaming Mouse", price: 39, img: "mouse.jpg", cat: "tilbehor" }
 ];
 
-let cart = 0;
+let cart = [];
 const grid = document.getElementById("grid");
 const cartCount = document.getElementById("cart-count");
-
-const PAYMENT_LINK = "https://revolut.me/yourlink";
-
-function buy() {
-  window.open(PAYMENT_LINK, "_blank");
-}
+const searchInput = document.getElementById("search");
+const suggestionsBox = document.getElementById("search-suggestions");
 
 function render(filter = "all") {
   grid.innerHTML = "";
   const list = filter === "all" ? products : products.filter(p => p.cat === filter);
 
-  list.forEach(p => {
+  list.forEach((p, index) => {
     const card = document.createElement("div");
     card.className = "card";
+    card.id = "product-" + index;
     card.innerHTML = `
       <img src="${p.img}" alt="${p.name}">
       <div class="info">
@@ -154,16 +146,70 @@ function render(filter = "all") {
       const qty = parseInt(prompt("How many?", "1")) || 1;
       addDeal(p.name, p.price, qty, p.img);
     };
-    card.querySelector(".buy").onclick = buy;
+    card.querySelector(".buy").onclick = () => alert("Payment coming soon!");
     grid.appendChild(card);
   });
 }
+
+function showSuggestions(query) {
+  if (!query.trim()) {
+    suggestionsBox.classList.remove("show");
+    suggestionsBox.innerHTML = "";
+    return;
+  }
+  const q = query.toLowerCase();
+  const matches = products.filter(p => p.name.toLowerCase().includes(q)).slice(0, 6);
+  if (matches.length === 0) {
+    suggestionsBox.innerHTML = `<div class="suggestion-item"><div class="info"><div class="name">No results for "${query}"</div></div></div>`;
+    suggestionsBox.classList.add("show");
+    return;
+  }
+  suggestionsBox.innerHTML = matches.map(p => `
+    <div class="suggestion-item" data-name="${p.name}">
+      <img src="${p.img}" alt="${p.name}" onerror="this.style.display='none'">
+      <div class="info">
+        <div class="name">${p.name}</div>
+        <div class="price">€${p.price}</div>
+      </div>
+    </div>
+  `).join("");
+  suggestionsBox.classList.add("show");
+
+  suggestionsBox.querySelectorAll(".suggestion-item").forEach(item => {
+    item.onclick = () => {
+      const name = item.dataset.name;
+      const productIndex = products.findIndex(pr => pr.name === name);
+      if (productIndex !== -1) {
+        document.querySelectorAll(".filter").forEach(b => b.classList.remove("active"));
+        document.querySelector('.filter[data-filter="all"]').classList.add("active");
+        render("all");
+        setTimeout(() => {
+          const target = document.getElementById("product-" + productIndex);
+          if (target) {
+            target.scrollIntoView({ behavior: "smooth", block: "center" });
+            target.style.outline = "2px solid #111";
+            setTimeout(() => target.style.outline = "", 2000);
+          }
+        }, 100);
+      }
+      searchInput.value = "";
+      suggestionsBox.classList.remove("show");
+    };
+  });
+}
+
+searchInput.addEventListener("input", (e) => showSuggestions(e.target.value));
+searchInput.addEventListener("focus", (e) => { if (e.target.value) showSuggestions(e.target.value); });
+document.addEventListener("click", (e) => {
+  if (!e.target.closest(".search-wrapper")) suggestionsBox.classList.remove("show");
+});
 
 document.querySelectorAll(".filter").forEach(btn => {
   btn.onclick = () => {
     document.querySelectorAll(".filter").forEach(b => b.classList.remove("active"));
     btn.classList.add("active");
     render(btn.dataset.filter);
+    suggestionsBox.classList.remove("show");
   };
 });
 
@@ -173,102 +219,42 @@ document.getElementById("lang-select").onchange = (e) => {
   render(document.querySelector(".filter.active").dataset.filter);
 };
 
-document.getElementById("search")?.addEventListener("input", (e) => {
-  const q = e.target.value.toLowerCase().trim();
-  if (!q) {
-    document.querySelectorAll(".card").forEach(card => card.style.display = "");
-    return;
-  }
-  document.querySelectorAll(".card").forEach(card => {
-    const name = card.querySelector("h3")?.textContent.toLowerCase() || "";
-    card.style.display = name.includes(q) ? "" : "none";
-  });
-});
-
-let cartItems = [];
-let cartTotal = 0;
-
 function addDeal(name, price, qty = 1, img = "") {
-  const existing = cartItems.find(item => item.name === name);
-  if (existing) {
-    existing.qty += qty;
-  } else {
-    cartItems.push({ name, price, qty, img });
-  }
-  cartTotal += price * qty;
-  cart += qty;
-  document.getElementById("cart-count").textContent = cart;
-  alert(name + " × " + qty + " added to cart");
-}
-
-function changeQty(name, delta) {
-  const item = cartItems.find(i => i.name === name);
-  if (!item) return;
-  item.qty += delta;
-  if (item.qty < 1) {
-    removeItem(name);
-    return;
-  }
-  cartTotal += item.price * delta;
-  cart += delta;
-  document.getElementById("cart-count").textContent = cart;
+  const existing = cart.find(item => item.name === name);
+  if (existing) existing.qty += qty;
+  else cart.push({ name, price, qty, img });
+  updateCart();
   openCart();
 }
 
-function clearCart() {
-  cartItems = [];
-  cartTotal = 0;
-  cart = 0;
-  document.getElementById("cart-count").textContent = 0;
-  openCart();
-}
-
-function removeItem(name) {
-  const item = cartItems.find(i => i.name === name);
-  if (item) {
-    cartTotal -= item.price * item.qty;
-    cart -= item.qty;
-    cartItems = cartItems.filter(i => i.name !== name);
-    document.getElementById("cart-count").textContent = cart;
-    openCart();
-  }
-}
-
-function openCart() {
-  const modal = document.getElementById("cart-modal");
+function updateCart() {
+  const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
+  cartCount.textContent = totalItems;
   const itemsDiv = document.getElementById("cart-items");
-  itemsDiv.innerHTML = "";
-  if (cartItems.length === 0) {
-    itemsDiv.innerHTML = "<p>Your cart is empty.</p>";
-  } else {
-    cartItems.forEach(item => {
-      const imgHtml = item.img ? `<img src="${item.img}" style="width:48px; height:48px; object-fit:contain; border-radius:6px; background:#f5f5f5; margin-right:10px;">` : "";
-      itemsDiv.innerHTML += `<div style="display:flex; align-items:center; padding:10px 0; border-bottom:1px solid #eee;">
-        ${imgHtml}
-        <div style="flex:1;">
-          <div style="font-weight:600;">${item.name}</div>
-          <div style="display:flex; align-items:center; gap:8px; margin-top:4px;">
-            <button onclick="changeQty('${item.name}', -1)" style="background:#eee; border:0; width:28px; height:28px; border-radius:6px; cursor:pointer;">−</button>
-            <span>${item.qty}</span>
-            <button onclick="changeQty('${item.name}', 1)" style="background:#eee; border:0; width:28px; height:28px; border-radius:6px; cursor:pointer;">+</button>
-          </div>
-        </div>
-        <div style="text-align:right;">
-          <div style="font-weight:700;">€${item.price * item.qty}</div>
-          <button onclick="removeItem('${item.name}')" style="background:#eee; border:0; padding:4px 10px; border-radius:6px; cursor:pointer; font-size:0.85rem; margin-top:4px;">Remove</button>
-        </div>
-      </div>`;
-    });
-  }
-  document.getElementById("cart-total").textContent = "Total: €" + cartTotal;
-  modal.style.display = "block";
+  itemsDiv.innerHTML = cart.map((item, i) => `
+    <div style="display:flex; justify-content:space-between; align-items:center; padding:8px 0; border-bottom:1px solid #eee;">
+      <div>${item.name} <strong>×${item.qty}</strong></div>
+      <div>
+        <button onclick="changeQty(${i}, -1)" style="padding:4px 8px; margin:0 4px;">−</button>
+        <button onclick="changeQty(${i}, 1)" style="padding:4px 8px;">+</button>
+        €${(item.price * item.qty).toFixed(0)}
+      </div>
+    </div>
+  `).join("") || "<p>Cart is empty</p>";
+  const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+  document.getElementById("cart-total").textContent = `Total: €${total.toFixed(0)}`;
 }
 
-function closeCart() {
-  document.getElementById("cart-modal").style.display = "none";
+function changeQty(index, delta) {
+  cart[index].qty += delta;
+  if (cart[index].qty <= 0) cart.splice(index, 1);
+  updateCart();
 }
 
-window.onclick = function(event) {
-  const modal = document.getElementById("cart-modal");
-  if (event.target == modal) modal.style.display = "none";
-};
+function openCart() { document.getElementById("cart-modal").style.display = "flex"; }
+function closeCart() { document.getElementById("cart-modal").style.display = "none"; }
+function clearCart() { cart = []; updateCart(); }
+
+render();
+updateTexts();
+updateCart();
