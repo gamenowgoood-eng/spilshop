@@ -174,7 +174,11 @@ document.getElementById("lang-select").onchange = (e) => {
 };
 
 document.getElementById("search")?.addEventListener("input", (e) => {
-  const q = e.target.value.toLowerCase();
+  const q = e.target.value.toLowerCase().trim();
+  if (!q) {
+    document.querySelectorAll(".card").forEach(card => card.style.display = "");
+    return;
+  }
   document.querySelectorAll(".card").forEach(card => {
     const name = card.querySelector("h3")?.textContent.toLowerCase() || "";
     card.style.display = name.includes(q) ? "" : "none";
