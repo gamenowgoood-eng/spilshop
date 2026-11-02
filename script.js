@@ -173,8 +173,13 @@ document.getElementById("lang-select").onchange = (e) => {
   render(document.querySelector(".filter.active").dataset.filter);
 };
 
-updateTexts();
-render();
+document.getElementById("search")?.addEventListener("input", (e) => {
+  const q = e.target.value.toLowerCase();
+  document.querySelectorAll(".card").forEach(card => {
+    const name = card.querySelector("h3")?.textContent.toLowerCase() || "";
+    card.style.display = name.includes(q) ? "" : "none";
+  });
+});
 
 let cartItems = [];
 let cartTotal = 0;

@@ -35,28 +35,33 @@
     <div class="container">
       <h1>Games & Consoles</h1>
       <p>Official retailer · Fast worldwide shipping · Secure payment</p>
+      <div style="max-width:480px; margin:20px auto 0;">
+        <input type="text" id="search" placeholder="Search games, consoles..." style="width:100%; padding:14px 18px; border:1px solid #ddd; border-radius:12px; font-size:1rem;">
+      </div>
     </div>
   </section>
 
   <section id="deals" class="deals">
     <div class="container">
-      <h2 style="text-align:center; margin-bottom:24px;">Current offers</h2>
-      <div class="deals-grid">
-        <div class="deal">
-          <div class="deal-img" style="background:#f7f7f7; height:200px; border-radius:12px; margin-bottom:16px; display:flex; align-items:center; justify-content:center; font-size:4rem; color:#333;">🎮</div>
-          <h3>GTA 6 Pre-order</h3>
-          <p class="deal-sub">Special price · Free shipping</p>
-          <div class="deal-price">€69</div>
-          <p class="deal-note">Free shipping worldwide</p>
-          <button class="btn" onclick="addDeal('GTA 6 Pre-order', 69, 1)">Pre-order</button>
+      <div class="promo-banner">
+        <div class="promo-content">
+          <div class="promo-badge">PRE-ORDER</div>
+          <h2>GTA 6</h2>
+          <p>Special price · Free shipping worldwide</p>
+          <div class="promo-price">€69</div>
+          <button class="btn" onclick="addDeal('GTA 6 Pre-order', 69, 1)">Pre-order now</button>
         </div>
-        <div class="deal">
-          <div class="deal-img" style="background:#f7f7f7; height:200px; border-radius:12px; margin-bottom:16px; display:flex; align-items:center; justify-content:center; font-size:4rem; color:#333;">🎮</div>
-          <h3>PS5 + GTA Bundle</h3>
-          <p class="deal-sub">PS5 + DualSense</p>
-          <div class="deal-price"><span class="old">€699</span> €579</div>
+        <div class="promo-visual">🎮</div>
+      </div>
+      <div class="promo-banner secondary">
+        <div class="promo-content">
+          <div class="promo-badge">BUNDLE</div>
+          <h2>PS5 + GTA</h2>
+          <p>Console + DualSense</p>
+          <div class="promo-price"><span class="old">€699</span> €579</div>
           <button class="btn" onclick="addDeal('PS5 + GTA Bundle', 579, 1)">Buy now</button>
         </div>
+        <div class="promo-visual">🎮</div>
       </div>
     </div>
   </section>
