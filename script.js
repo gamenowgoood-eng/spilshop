@@ -144,13 +144,14 @@ function render(filter = "all") {
       <div class="info">
         <h3>${p.name}</h3>
         <div class="price">€${p.price}</div>
+        <div style="font-size:0.8rem; color:#666; margin-bottom:8px;">In stock · Ships in 2-3 days</div>
         <button class="add">${t("add")}</button>
         <button class="buy">${t("buy")}</button>
       </div>
     `;
     card.querySelector(".add").onclick = () => {
       const qty = parseInt(prompt("How many?", "1")) || 1;
-      addDeal(p.name, p.price, qty);
+      addDeal(p.name, p.price, qty, p.img);
     };
     card.querySelector(".buy").onclick = buy;
     grid.appendChild(card);
@@ -177,12 +178,12 @@ render();
 let cartItems = [];
 let cartTotal = 0;
 
-function addDeal(name, price, qty = 1) {
+function addDeal(name, price, qty = 1, img = "") {
   const existing = cartItems.find(item => item.name === name);
   if (existing) {
     existing.qty += qty;
   } else {
-    cartItems.push({ name, price, qty });
+    cartItems.push({ name, price, qty, img });
   }
   cartTotal += price * qty;
   cart += qty;
@@ -231,15 +232,21 @@ function openCart() {
     itemsDiv.innerHTML = "<p>Your cart is empty.</p>";
   } else {
     cartItems.forEach(item => {
-      itemsDiv.innerHTML += `<div style="display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px solid #eee;">
-        <span>${item.name}</span>
-        <div style="display:flex; align-items:center; gap:8px;">
-          <button onclick="changeQty('${item.name}', -1)" style="background:#eee; border:0; width:28px; height:28px; border-radius:6px; cursor:pointer;">−</button>
-          <span>${item.qty}</span>
-          <button onclick="changeQty('${item.name}', 1)" style="background:#eee; border:0; width:28px; height:28px; border-radius:6px; cursor:pointer;">+</button>
+      const imgHtml = item.img ? `<img src="${item.img}" style="width:48px; height:48px; object-fit:contain; border-radius:6px; background:#f5f5f5; margin-right:10px;">` : "";
+      itemsDiv.innerHTML += `<div style="display:flex; align-items:center; padding:10px 0; border-bottom:1px solid #eee;">
+        ${imgHtml}
+        <div style="flex:1;">
+          <div style="font-weight:600;">${item.name}</div>
+          <div style="display:flex; align-items:center; gap:8px; margin-top:4px;">
+            <button onclick="changeQty('${item.name}', -1)" style="background:#eee; border:0; width:28px; height:28px; border-radius:6px; cursor:pointer;">−</button>
+            <span>${item.qty}</span>
+            <button onclick="changeQty('${item.name}', 1)" style="background:#eee; border:0; width:28px; height:28px; border-radius:6px; cursor:pointer;">+</button>
+          </div>
         </div>
-        <span>€${item.price * item.qty}</span>
-        <button onclick="removeItem('${item.name}')" style="background:#eee; border:0; padding:4px 10px; border-radius:6px; cursor:pointer;">Remove</button>
+        <div style="text-align:right;">
+          <div style="font-weight:700;">€${item.price * item.qty}</div>
+          <button onclick="removeItem('${item.name}')" style="background:#eee; border:0; padding:4px 10px; border-radius:6px; cursor:pointer; font-size:0.85rem; margin-top:4px;">Remove</button>
+        </div>
       </div>`;
     });
   }
