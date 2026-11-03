@@ -255,6 +255,46 @@ function openCart() { document.getElementById("cart-modal").style.display = "fle
 function closeCart() { document.getElementById("cart-modal").style.display = "none"; }
 function clearCart() { cart = []; updateCart(); }
 
+function showCheckoutForm() {
+  if (cart.length === 0) {
+    alert("Your cart is empty");
+    return;
+  }
+  document.getElementById("checkout-form").style.display = "block";
+  document.getElementById("show-checkout").style.display = "none";
+}
+
+function confirmOrder() {
+  const fname = document.getElementById("fname").value.trim();
+  const lname = document.getElementById("lname").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const address = document.getElementById("address").value.trim();
+  const city = document.getElementById("city").value.trim();
+  const postal = document.getElementById("postal").value.trim();
+  const country = document.getElementById("country").value.trim();
+
+  if (!fname || !lname || !email || !address || !city || !postal || !country) {
+    alert("Please fill in all required fields");
+    return;
+  }
+
+  const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+  const order = {
+    name: fname + " " + lname,
+    email,
+    phone: document.getElementById("phone").value.trim(),
+    address: address + ", " + postal + " " + city + ", " + country,
+    items: cart,
+    total
+  };
+
+  localStorage.setItem("lastOrder", JSON.stringify(order));
+
+  window.open("https://checkout.revolut.com/pay/34bd909a-12e7-49f8-a393-540bd03d9c2f", "_blank");
+  alert("Please complete the payment on Revolut.\\n\\nYour order details have been saved. After payment, we will contact you at " + email);
+  closeCart();
+}
+
 render();
 updateTexts();
 updateCart();
