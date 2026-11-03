@@ -146,7 +146,9 @@ function render(filter = "all") {
       const qty = parseInt(prompt("How many?", "1")) || 1;
       addDeal(p.name, p.price, qty, p.img);
     };
-    card.querySelector(".buy").onclick = () => window.open('https://checkout.revolut.com/pay/34bd909a-12e7-49f8-a393-540bd03d9c2f', '_blank');
+    card.querySelector(".buy").onclick = () => {
+      addDeal(p.name, p.price, 1, p.img);
+    };
     grid.appendChild(card);
   });
 }
@@ -225,6 +227,11 @@ function addDeal(name, price, qty = 1, img = "") {
   else cart.push({ name, price, qty, img });
   updateCart();
   openCart();
+  // Show form immediately
+  setTimeout(() => {
+    document.getElementById("checkout-form").style.display = "block";
+    document.getElementById("show-checkout").style.display = "none";
+  }, 100);
 }
 
 function updateCart() {

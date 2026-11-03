@@ -68,15 +68,73 @@ body {
 .hero {
   background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
   color: #fff;
-  padding: 72px 0 56px;
+  padding: 80px 0 60px;
   text-align: center;
 }
 
 .hero h1 {
-  font-size: 2.6rem;
+  font-size: 2.8rem;
   font-weight: 700;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
   letter-spacing: -1px;
+}
+
+.btn {
+  background: #111;
+  color: #fff;
+  border: none;
+  padding: 12px 26px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn:hover {
+  background: #333;
+  transform: translateY(-1px);
+}
+
+.deal-card {
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 16px;
+  padding: 36px 28px;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+}
+
+.deals-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+@media (max-width: 768px) {
+  .deals-grid { grid-template-columns: 1fr; }
+}
+
+.card {
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 14px;
+  overflow: hidden;
+  transition: box-shadow 0.2s;
+}
+
+.card:hover {
+  box-shadow: 0 8px 28px rgba(0,0,0,0.08);
+}
+
+.trust-bar {
+  background: #f8f9fa;
+  padding: 16px 0;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #222;
+  border-bottom: 1px solid #eee;
+  font-weight: 500;
 }
 
 .hero p {
@@ -130,13 +188,15 @@ body {
 }
 
 .suggestion-item .info .name {
-  font-size: 0.92rem;
-  font-weight: 500;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #111;
 }
 
 .suggestion-item .info .price {
-  font-size: 0.85rem;
+  font-size: 0.88rem;
   color: #555;
+  margin-top: 2px;
 }
 
 .trust-bar {
@@ -144,12 +204,13 @@ body {
   padding: 14px 0;
   text-align: center;
   font-size: 0.88rem;
-  color: #444;
+  color: #333;
   border-bottom: 1px solid #eee;
+  font-weight: 500;
 }
 
 .trust-bar span {
-  margin: 0 16px;
+  margin: 0 14px;
 }
 
 .deals {
