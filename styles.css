@@ -130,13 +130,15 @@ body {
 }
 
 .suggestion-item .info .name {
-  font-size: 0.92rem;
-  font-weight: 500;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #111;
 }
 
 .suggestion-item .info .price {
-  font-size: 0.85rem;
+  font-size: 0.88rem;
   color: #555;
+  margin-top: 2px;
 }
 
 .trust-bar {
