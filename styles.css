@@ -282,10 +282,26 @@ body {
 .form-group input,
 .form-group textarea {
   width: 100%;
-  padding: 11px 12px;
+  padding: 12px 14px;
   border: 1px solid #ddd;
   border-radius: 8px;
   font-size: 0.95rem;
+  background: #fafafa;
+  transition: border 0.2s, background 0.2s;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #111;
+  background: #fff;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: #333;
 }
 
 .form-row {
