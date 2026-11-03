@@ -146,12 +146,13 @@ body {
   padding: 14px 0;
   text-align: center;
   font-size: 0.88rem;
-  color: #444;
+  color: #333;
   border-bottom: 1px solid #eee;
+  font-weight: 500;
 }
 
 .trust-bar span {
-  margin: 0 16px;
+  margin: 0 14px;
 }
 
 .deals {
