@@ -32,7 +32,7 @@ const products = [
   { name: 'Gaming Mouse', price: 39, img: 'mouse.jpg', cat: 'tilbehor' }
 ];
 
-const productNotes = {"Baldur's Gate 3": "Role-playing adventure. Confirm platform and edition before ordering.", "GTA V (PS5)": "Open-world action adventure for PlayStation 5.", "EA Sports FC 27": "Football game listing. Confirm release, platform and edition availability.", "Elden Ring Collector's": "Collector's edition listing. Confirm included items, platform and stock.", "UFC 6": "Mixed martial arts game listing. Confirm platform and release availability.", "EA Sports FC 26": "Football game listing. Confirm platform and edition.", "The Last of Us Part I": "Story-driven action adventure. Confirm platform and edition.", "Uncharted Legacy of Thieves": "Action-adventure collection. Confirm platform and edition.", "Red Dead Redemption": "Western action-adventure. Confirm platform and edition.", "007 First Light": "Upcoming spy-action game listing. Confirm release date and platform.", "Mafia: The Old Country": "Story-driven crime action game. Confirm platform and edition.", "Far Cry 6": "Open-world action game. Confirm platform and edition.", "Battlefield 6": "Military action game listing. Confirm platform, edition and availability.", "God of War Ragnarök": "Action-adventure game. Confirm platform and edition.", "PlayStation 5": "Console listing. Confirm exact model, storage, condition and included accessories.", "Xbox Series X": "Console listing. Confirm exact model, condition and included accessories.", "Nintendo Switch OLED": "Hybrid console listing. Confirm colour, condition and included accessories.", "DualSense Controller": "Wireless controller for compatible PlayStation 5 systems. Confirm colour and model.", "Xbox Wireless Controller": "Wireless controller listing. Confirm generation, colour and compatibility.", "Nintendo Switch Pro Controller": "Wireless controller for Nintendo Switch. Confirm model and condition.", "Gaming Headset": "Gaming headset listing. Confirm connection type and device compatibility.", "Controller Charging Station": "Charging accessory listing. Confirm controller compatibility.", "HDMI Cable 2m": "Two-metre HDMI cable. Check the HDMI specification required by your device.", "USB-C Charging Cable": "USB-C cable listing. Confirm charging and data requirements.", "Memory Card 1TB": "Storage product listing. Confirm device compatibility and exact specifications.", "Gaming Mouse": "Gaming mouse listing. Confirm connection type and technical specifications."};
+const productNotes = {"Baldur's Gate 3": "A story-rich fantasy role-playing adventure. Check platform and edition before purchase.", "GTA V (PS5)": "Explore Los Santos in this open-world action adventure for PlayStation 5.", "EA Sports FC 27": "Football game listing. Confirm release date, platform and edition before ordering.", "Elden Ring Collector's": "Collector's edition listing. Confirm included collectibles, platform and stock before ordering.", "UFC 6": "Mixed martial arts game listing. Confirm platform and release availability before ordering.", "EA Sports FC 26": "Football game listing. Confirm platform and edition before ordering.", "The Last of Us Part I": "Story-driven action adventure. Confirm platform and edition before ordering.", "Uncharted Legacy of Thieves": "Action-adventure collection. Confirm platform and edition before ordering.", "Red Dead Redemption": "Western action-adventure. Confirm platform and edition before ordering.", "007 First Light": "Spy-action game listing. Confirm release date and platform before ordering.", "Mafia: The Old Country": "Story-driven crime action adventure. Confirm platform and edition before ordering.", "Far Cry 6": "Open-world action adventure. Confirm platform and edition before ordering.", "Battlefield 6": "Military action game listing. Confirm platform, edition and availability before ordering.", "God of War Ragnarök": "Norse mythology action adventure. Confirm platform and edition before ordering.", "PlayStation 5": "Console listing. Confirm exact model, storage, condition and included accessories.", "Xbox Series X": "Console listing. Confirm exact model, condition and included accessories.", "Nintendo Switch OLED": "Hybrid console listing. Confirm colour, condition and included accessories.", "DualSense Controller": "Wireless controller for compatible PlayStation 5 systems. Confirm colour and model.", "Xbox Wireless Controller": "Wireless controller listing. Confirm generation, colour and compatibility.", "Nintendo Switch Pro Controller": "Wireless controller for Nintendo Switch. Confirm model and condition.", "Gaming Headset": "Gaming headset listing. Confirm connection type and device compatibility.", "Controller Charging Station": "Charging accessory listing. Confirm controller compatibility.", "HDMI Cable 2m": "Two-metre HDMI cable. Check the HDMI specification required by your device.", "USB-C Charging Cable": "USB-C cable listing. Confirm charging and data requirements.", "Memory Card 1TB": "Storage product listing. Confirm device compatibility and exact specifications.", "Gaming Mouse": "Gaming mouse listing. Confirm connection type and technical specifications."};
 
 const CART_STORAGE_KEY = 'gamenowgood_cart_v2';
 let cart = loadCart();
@@ -69,7 +69,7 @@ function render() {
   list.forEach(product => {
     const card = document.createElement('article');
     card.className = 'card';
-    card.innerHTML = `<div class="product-image-wrap"><img src="${safeText(product.img)}" alt="${safeText(product.name)}" loading="lazy"><span class="product-category">${product.cat === 'spil' ? 'GAME' : product.cat === 'konsol' ? 'CONSOLE' : 'ACCESSORY'}</span></div><div class="product-info"><h3>${safeText(product.name)}</h3><p class="product-description">${safeText(productNotes[product.name] || 'Contact us to confirm product details and availability.')}</p><div class="product-bottom"><strong class="price">${money(product.price)}</strong><button class="add-button" type="button" aria-label="Add ${safeText(product.name)} to basket">＋</button></div><button class="buy-button" type="button">Add to basket</button><p class="stock-note">Availability confirmed on request</p></div>`;
+    card.innerHTML = `<div class="product-image-wrap"><img src="${safeText(product.img)}" alt="${safeText(product.name)}" loading="lazy"><span class="product-category">${product.cat === 'spil' ? 'GAME' : product.cat === 'konsol' ? 'CONSOLE' : 'ACCESSORY'}</span></div><div class="product-info"><h3>${safeText(product.name)}</h3><p class="product-description">${safeText(productNotes[product.name] || 'Contact us to confirm product details and availability.')}</p><div class="product-bottom"><strong class="price">${money(product.price)}</strong><button class="add-button" type="button" aria-label="Add ${safeText(product.name)} to basket">＋</button></div><button class="buy-button" type="button">Add to basket</button><p class="stock-note">Stock and delivery confirmed before dispatch</p></div>`;
     card.querySelector('.add-button').addEventListener('click', () => addDeal(product.name, product.price, 1, product.img));
     card.querySelector('.buy-button').addEventListener('click', () => addDeal(product.name, product.price, 1, product.img));
     grid.appendChild(card);
@@ -134,28 +134,26 @@ function showCheckoutForm() {
   document.getElementById('show-checkout').style.display = 'none';
 }
 function confirmOrder() {
-  const ids = ['fname', 'lname', 'email', 'address', 'city', 'postal', 'country'];
+  const ids = ['fname', 'lname', 'address', 'city', 'postal', 'country'];
   const values = Object.fromEntries(ids.map(id => [id, document.getElementById(id).value.trim()]));
-  const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email);
-  if (ids.some(id => !values[id]) || !emailValid) {
-    alert('Please complete all required fields and enter a valid email address.');
-    const firstInvalid = ids.map(id => document.getElementById(id)).find(input => !input.value.trim() || (input.type === 'email' && !input.validity.valid));
+  if (ids.some(id => !values[id])) {
+    alert('Please complete all required delivery details.');
+    const firstInvalid = ids.map(id => document.getElementById(id)).find(input => !input.value.trim());
     if (firstInvalid) firstInvalid.focus();
     return;
   }
   if (!cart.length) { alert('Your basket is empty.'); return; }
   const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
   const order = {
-    customer: { name: `${values.fname} ${values.lname}`, email: values.email, phone: document.getElementById('phone').value.trim(), address: `${values.address}, ${values.postal} ${values.city}, ${values.country}` },
+    customer: { name: `${values.fname} ${values.lname}`, phone: document.getElementById('phone').value.trim(), address: `${values.address}, ${values.postal} ${values.city}, ${values.country}` },
     items: cart.map(item => ({ name: item.name, price: item.price, quantity: item.qty })),
     total, currency: 'EUR', createdAt: new Date().toISOString()
   };
-  try { localStorage.setItem('lastOrder', JSON.stringify(order)); } catch (_) { /* storage may be disabled */ }
-  const subject = encodeURIComponent(`Game Good Now order enquiry - ${money(total)}`);
-  const orderLines = order.items.map(item => `- ${item.name} x${item.quantity}: ${money(item.price * item.quantity)}`).join('\\n');
-  const body = encodeURIComponent(`Hello Game Good Now,\\n\\nPlease confirm availability and delivery for this order:\\n\\n${orderLines}\\n\\nTotal: ${money(total)}\\n\\nName: ${order.customer.name}\\nEmail: ${order.customer.email}\\nPhone: ${order.customer.phone}\\nAddress: ${order.customer.address}\\n\\nPlease confirm stock, delivery cost and next steps before payment.`);
-  alert('Your email app will open with your order enquiry. Send the email and wait for stock and delivery confirmation before making payment. This static website cannot automatically notify the store.');
-  window.location.href = `mailto:support@game-good-now.com?subject=${subject}&body=${body}`;
+  try { localStorage.setItem('lastOrder', JSON.stringify(order)); } catch (_) { /* no local storage available */ }
+  // Preserve the original payment flow and exact Revolut checkout URL.
+  const paymentWindow = window.open(REVOLUT_CHECKOUT_URL, '_blank', 'noopener,noreferrer');
+  if (!paymentWindow) window.location.href = REVOLUT_CHECKOUT_URL;
+  alert(`Opening Revolut payment. Basket total: ${money(total)}. Please make sure the amount shown by Revolut matches your basket before paying.`);
   closeCart();
 }
 
