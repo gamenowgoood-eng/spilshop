@@ -55,3 +55,25 @@ body{background:radial-gradient(ellipse at 50% -15%,#172b48 0%,#080e1b 48%);}
 @media(max-width:900px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.product-image-wrap{height:190px}.product-info{min-height:290px}}
 @media(max-width:680px){.hero{min-height:450px}.hero-inner{padding-top:54px;padding-bottom:48px}.hero h1{font-size:clamp(2.9rem,12vw,4.2rem)}.trust-items{gap:13px}.section{padding:56px 0}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.product-image-wrap{height:158px;padding:10px}.product-info{min-height:290px;padding:12px}.product-info h3{font-size:.82rem}.product-description{font-size:.68rem;min-height:104px;line-height:1.5}.product-meta{gap:4px}.product-meta span{font-size:.55rem;padding:3px 6px}.price{font-size:1.02rem}.add-button{width:34px;height:34px}.buy-button{min-height:40px;font-size:.67rem}.stock-note{font-size:.59rem}.deal-card{border-radius:17px}}
 @media(max-width:390px){.grid{grid-template-columns:1fr}.product-image-wrap{height:205px}.product-info{min-height:0}.product-description{min-height:0;font-size:.76rem}.product-meta{margin-top:4px}}
+
+/* Final polish: clearer hierarchy, product information and mobile usability */
+.product-description{color:#b4c0d1;font-size:.73rem;line-height:1.55;min-height:6.2em;margin-top:7px}
+.product-meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.product-meta span{display:inline-flex;padding:4px 7px;border:1px solid rgba(255,255,255,.09);border-radius:6px;background:rgba(255,255,255,.035);color:#9eacc0;font-size:.59rem;font-weight:650}
+.stock-note{margin-top:9px;color:#8190a6;font-size:.62rem;line-height:1.45}
+.help-intro{max-width:690px;margin-top:14px;color:#aab6c8;font-size:.9rem}
+.deal-gta{background:radial-gradient(ellipse at 80% 50%,rgba(238,116,133,.18),transparent 45%),linear-gradient(120deg,#251b2b,#111827 75%)}
+.deal-console{background:radial-gradient(ellipse at 82% 50%,rgba(118,146,255,.18),transparent 46%),linear-gradient(120deg,#1b233a,#111827 75%)}
+.deal-card .deal-copy{max-width:70%}
+.deal-card .pill{background:rgba(5,14,25,.45)}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
+.cart-btn:hover,.add-button:hover{border-color:var(--cyan);filter:brightness(1.12)}
+.modal-content{max-height:calc(100vh - 50px);overflow-y:auto}
+@media(max-width:680px){
+  .product-description{min-height:0;font-size:.7rem}
+  .product-info{min-height:0}
+  .deal-card .deal-copy{max-width:78%}
+  .deal-card p{max-width:260px}
+  .trust-items small{font-size:.7rem}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important;animation-iteration-count:1!important}}

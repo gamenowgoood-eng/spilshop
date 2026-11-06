@@ -1,7 +1,7 @@
 'use strict';
 
 // Existing Revolut payment destination retained exactly as supplied in the original project.
-const REVOLUT_CHECKOUT_URL = 'https://checkout.revolut.com/pay/34bd909a-12e7-49f8-a393-540bd03d9c2f';
+// Payment is arranged manually after support confirms the order and final total.
 
 const products = [
   { name: "Baldur's Gate 3", price: 54, img: 'IMG_9089.jpg', cat: 'spil' },
@@ -9,15 +9,15 @@ const products = [
   { name: 'EA Sports FC 27', price: 67, img: 'IMG_9088.jpg', cat: 'spil' },
   { name: "Elden Ring Collector's", price: 87, img: 'IMG_9090.jpg', cat: 'spil' },
   { name: 'UFC 6', price: 60, img: 'IMG_9091.jpg', cat: 'spil' },
-  { name: 'EA Sports FC 26', price: 60, img: 'IMG_9092.jpg', cat: 'spil' },
+  { name: 'EA Sports FC 26', price: 35, img: 'IMG_9092.jpg', cat: 'spil' },
   { name: 'The Last of Us Part I', price: 47, img: 'IMG_9093.jpg', cat: 'spil' },
   { name: 'Uncharted Legacy of Thieves', price: 40, img: 'IMG_9094.jpg', cat: 'spil' },
   { name: 'Red Dead Redemption', price: 44, img: 'IMG_9095.jpg', cat: 'spil' },
   { name: '007 First Light', price: 67, img: 'IMG_9096.jpg', cat: 'spil' },
   { name: 'Mafia: The Old Country', price: 60, img: 'IMG_9097.jpg', cat: 'spil' },
   { name: 'Far Cry 6', price: 33, img: 'IMG_9098.jpg', cat: 'spil' },
-  { name: 'Battlefield 6', price: 67, img: 'IMG_9099.jpg', cat: 'spil' },
-  { name: 'God of War Ragnarök', price: 54, img: 'IMG_9100.jpg', cat: 'spil' },
+  { name: 'Battlefield 6', price: 40, img: 'IMG_9099.jpg', cat: 'spil' },
+  { name: 'God of War Ragnarök', price: 34, img: 'IMG_9100.jpg', cat: 'spil' },
   { name: 'PlayStation 5', price: 539, img: 'IMG_9116.jpg', cat: 'konsol' },
   { name: 'Xbox Series X', price: 579, img: 'IMG_9117.png', cat: 'konsol' },
   { name: 'Nintendo Switch OLED', price: 335, img: 'switch-oled.jpg', cat: 'konsol' },
@@ -144,17 +144,20 @@ function confirmOrder() {
   }
   if (!cart.length) { alert('Your basket is empty.'); return; }
   const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
-  const order = {
-    customer: { name: `${values.fname} ${values.lname}`, phone: document.getElementById('phone').value.trim(), address: `${values.address}, ${values.postal} ${values.city}, ${values.country}` },
-    items: cart.map(item => ({ name: item.name, price: item.price, quantity: item.qty })),
-    total, currency: 'EUR', createdAt: new Date().toISOString()
-  };
-  try { localStorage.setItem('lastOrder', JSON.stringify(order)); } catch (_) { /* no local storage available */ }
-  // Preserve the original payment flow and exact Revolut checkout URL.
-  const paymentWindow = window.open(REVOLUT_CHECKOUT_URL, '_blank', 'noopener,noreferrer');
-  if (!paymentWindow) window.location.href = REVOLUT_CHECKOUT_URL;
-  alert(`Opening Revolut payment. Basket total: ${money(total)}. Please make sure the amount shown by Revolut matches your basket before paying.`);
+  const phone = document.getElementById('phone').value.trim() || 'Not provided';
+  const lines = cart.map(item => `- ${item.name} x ${item.qty} — ${money(item.price * item.qty)}`);
+  const subject = 'Order request — Game Good Now';
+  const body = [
+    'Hello Game Good Now,', '',
+    'I would like to request the following order. Please confirm stock, exact editions/models, delivery cost and final amount before I pay.', '',
+    ...lines, '', `Indicative basket subtotal: ${money(total)}`, '',
+    'Delivery details:', `${values.fname} ${values.lname}`, `${values.address}`, `${values.postal} ${values.city}`, values.country, `Phone: ${phone}`, '',
+    'I understand this is an order request and not a confirmed purchase. Please reply with the final total and payment instructions.', ''
+  ].join('\n');
+  const mailto = `mailto:support@game-good-now.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  window.location.href = mailto;
   closeCart();
+  alert('Your email app should open with the order request. Please review and send the email. Your order is not placed until we confirm it.');
 }
 
 document.getElementById('year').textContent = new Date().getFullYear();
