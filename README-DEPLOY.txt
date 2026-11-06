@@ -1,17 +1,22 @@
-GAME GOOD NOW - UPDATED WEBSITE
+GAME GOOD NOW - VISUAL UPDATE
 
-UPLOAD:
+UPLOAD
 1. Extract this ZIP.
-2. Upload the contents of this folder to the root of your GitHub Pages repository.
-3. Replace the existing index.html, script.js, styles.css and product image files.
+2. Upload ALL files from this folder to the root of your GitHub repository.
+3. Replace the existing index.html, styles.css and script.js and upload all image files, including the new PNG files.
 4. Keep CNAME in the repository root.
-5. Wait for GitHub Pages to publish, then hard-refresh the website.
+5. Do not upload this ZIP inside the repository. Upload the extracted files.
+6. Wait for GitHub Pages to publish, then refresh the website fully.
 
-CHANGES:
-- Improved resolution, colour balance and sharpness of supplied product images.
-- Product descriptions and clearer product card layout.
-- Checkout no longer asks for an email address on this website.
-- Customer enters name and delivery address once, then goes directly to the existing Revolut hosted payment link.
+WHAT CHANGED
+- Refined the dark navy / teal / violet visual theme.
+- More consistent product image frames and improved hardware images with transparent backgrounds.
+- More detailed product descriptions and product information tags.
+- Clearer support, pricing and availability messaging.
+- Kept the existing product prices and Revolut payment destination.
+- Checkout does not ask customers for an email address.
 
-IMPORTANT PAYMENT LIMITATION:
-The current Revolut URL is a single static payment link. This static GitHub Pages website cannot securely create a unique payment for each basket, send the order and delivery details to the shop, or guarantee that the Revolut amount matches the basket. The customer must check the amount displayed by Revolut before paying. For fully automated orders and dynamic basket totals, connect a Revolut Business API or a supported hosted checkout through a secure server/backend. Do not advertise automatic order confirmation until that is implemented.
+IMPORTANT BEFORE ACCEPTING REAL ORDERS
+This is still a static GitHub Pages storefront. It does not automatically transmit basket/customer details to the seller, create a unique payment for each basket, or verify payment. The single static Revolut link may not equal the basket total. Confirm stock, shipping and the amount shown by Revolut before payment. A secure automated order flow needs a server-side checkout integration.
+
+To build real customer trust, publish the seller's legal business identity and address, clear delivery/returns/refund/privacy terms, and only genuine customer reviews. Do not add invented reviews, certifications, stock claims or guarantees.
