@@ -1,53 +1,51 @@
-GAME GOOD NOW — DEPLOYMENT & ORDER EMAIL SETUP
-================================================
+GAME GOOD NOW — ORDER EMAIL SETUP
+=================================
 
-1) Upload the CONTENTS of this folder to the ROOT of your GitHub Pages repository.
-   Do not upload this ZIP as a single file. Keep CNAME. Replace index.html,
-   script.js and styles.css and upload all image assets beside them.
+IMPORTANT DISTINCTION
+The current website uses a fixed Revolut payment link. It cannot pass the basket total to Revolut or receive a verified payment result. The website can send an order-request email, but it cannot safely send a "payment received" confirmation. Verify payment in Revolut first, then confirm the paid order manually. Automatic paid confirmations require a backend and a verified Revolut payment notification/webhook.
 
-2) Product corrections in this build:
-   - GTA V (PS4): uses gta-v-ps4-cover.jpg, taken from the exact cover image supplied.
-   - GTA VI: €59.99 and uses gta6-listing.webp (a clearly labelled listing graphic,
-     not an official retail box cover).
-   - Product names, prices and descriptions remain visible on cards.
-   - Existing Revolut checkout URL is preserved exactly.
+1. CREATE AN EMAILJS ACCOUNT
+   Go to https://www.emailjs.com/ and connect the mailbox used by your store.
 
-3) ORDER EMAIL NOTIFICATIONS (EmailJS)
-   Important: a static GitHub Pages site cannot securely confirm Revolut payment.
-   Email sent from the website at checkout is an ORDER REQUEST only, not proof of
-   payment and not a confirmed/paid order. Verify payment in Revolut before dispatch.
+2. CREATE TWO EMAIL TEMPLATES
 
-   A. Create an account at https://www.emailjs.com/
-   B. In Email Services, connect the mailbox that should receive order notifications.
-   C. Create an email template with these variables:
-      {{customer_name}}
-      {{customer_email}}
-      {{customer_phone}}
-      {{shipping_address}}
-      {{order_items}}
-      {{order_total}}
-      {{order_status}}
-   D. Set the template recipient ("To email") to your own store email address.
-      You can set "Reply-To" to {{customer_email}}.
-   E. Copy your EmailJS Public Key, Service ID and Template ID.
-   F. Open script.js and replace these three placeholder strings:
-      ADD_EMAILJS_PUBLIC_KEY
-      ADD_EMAILJS_SERVICE_ID
-      ADD_EMAILJS_TEMPLATE_ID
-   G. Save and commit script.js. Test with a low-value/test order request and
-      check that the store inbox receives the order details.
+   TEMPLATE A — STORE ORDER REQUEST
+   Set the recipient (To email) to your real store inbox.
+   Set Reply-To to {{customer_email}}.
+   Suggested subject: New order request {{order_number}} — {{order_total}}
 
-4) CUSTOMER ORDER CONFIRMATION
-   Do not send a message saying "payment received" just because the customer
-   clicked the Revolut button. First check the transaction in Revolut.
-   Then send the customer a confirmation email manually, or connect a verified
-   Revolut webhook/backend before automating paid confirmations.
+   TEMPLATE B — CUSTOMER ACKNOWLEDGEMENT
+   Set the recipient (To email) to {{customer_email}}.
+   Suggested subject: We received your order request {{order_number}}
+   The message must clearly say this is an order request only and payment/stock have not yet been verified. Do not say "paid", "payment received" or "order confirmed".
 
-5) BEFORE LAUNCH
-   - Confirm stock, delivery price/time, returns terms, seller identity and taxes.
-   - Test every product image, basket quantity controls and Revolut link.
-   - Make a test payment only if you can safely refund it.
-   - Never publish false stock claims, fake reviews or unverified delivery promises.
+3. ADD THESE TEMPLATE VARIABLES TO BOTH TEMPLATES
+   {{order_number}}
+   {{customer_name}}
+   {{customer_email}}
+   {{customer_phone}}
+   {{shipping_address}}
+   {{order_items}}
+   {{order_total}}
+   {{order_status}}
+   {{reply_to}}
 
-Support email currently shown: support@game-good-now.com
-Existing Revolut checkout URL is kept in script.js.
+4. ADD YOUR EMAILJS DETAILS
+   Open script.js and replace:
+   ADD_EMAILJS_PUBLIC_KEY
+   ADD_EMAILJS_SERVICE_ID
+   ADD_STORE_TEMPLATE_ID
+   ADD_CUSTOMER_TEMPLATE_ID
+
+   Use the Public Key from EmailJS Account, the Service ID from Email Services, and the two Template IDs from Email Templates.
+
+5. TEST BEFORE GOING LIVE
+   - Use your own email address and a test order.
+   - Check that the store inbox receives the order request.
+   - Check that the customer inbox receives the acknowledgement.
+   - Check spam/junk folders.
+   - Verify that the wording does not claim payment has been received.
+   - Only after you verify a real Revolut transaction should you send a separate paid-order confirmation.
+
+SECURITY / LIMITATIONS
+EmailJS public browser keys are intended for client-side use; enable domain restrictions and rate limits in EmailJS. Never put a private API key or payment secret in script.js. Do not collect card details on this website.
