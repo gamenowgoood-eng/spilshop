@@ -12,7 +12,7 @@ const EMAILJS_TEMPLATE_ID = 'ADD_EMAILJS_TEMPLATE_ID';
 const products = [
   { name: "Baldur's Gate 3 (PS5)", price: 54, img: 'IMG_9089.jpg', cat: 'spil', description: 'PlayStation 5 version. Explore the world of Baldur’s Gate in this story-driven role-playing adventure.' },
   {
-    name: 'GTA V (PS5)', price: 24.99, img: 'IMG_9087.jpg', cat: 'spil',
+    name: 'GTA V (PS5)', price: 24.99, img: 'gta-v-ps5-cover-user.webp', cat: 'spil',
     description: 'PlayStation 5 version. Explore Los Santos in the acclaimed open-world action adventure, enhanced for PS5.'
   },
   {
