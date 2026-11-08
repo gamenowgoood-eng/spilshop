@@ -15,3 +15,10 @@ img { max-width:100%; }
   .header-inner { min-width:0; }
   .logo { min-width:0; }
 }
+
+/* Product detail and supplied-cover refinements */
+.product-description{color:#9eacc0;font-size:.74rem;line-height:1.5;min-height:3.1em;margin:7px 0 13px}
+.product-image-wrap img{object-fit:contain}
+.gta-art{overflow:hidden}
+.gta-art img{width:100%;height:100%;object-fit:contain;position:relative;z-index:1}
+@media(max-width:680px){.product-description{font-size:.68rem;min-height:4.2em}.product-image-wrap{height:168px}.product-image-wrap img{object-fit:contain}}

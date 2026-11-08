@@ -9,3 +9,6 @@ IMPORTANT BEFORE ACCEPTING REAL ORDERS:
 - The Revolut checkout URL is a fixed payment link. The website cannot automatically pass the basket total or create an order in Revolut. Confirm the amount with the customer before asking them to pay.
 - Add your real legal business name, registration number (if applicable), business address/contact details, delivery charges/times, cancellation/returns policy, privacy policy and warranty terms. Do not publish invented details or fake reviews.
 - Verify product editions, region, platform, condition, warranty and included accessories before confirming any sale.
+
+GAME PLATFORM UPDATE
+All game listings are now labelled for PS5 where a PS5 edition is shown. GTA V uses the PS5 cover asset IMG_9087.jpg. Red Dead Redemption is labelled PS5 compatible rather than claiming a native PS5 edition. GTA VI is a forthcoming PS5 listing; confirm availability before taking payment.

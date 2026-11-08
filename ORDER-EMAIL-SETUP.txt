@@ -1,0 +1,53 @@
+GAME GOOD NOW — DEPLOYMENT & ORDER EMAIL SETUP
+================================================
+
+1) Upload the CONTENTS of this folder to the ROOT of your GitHub Pages repository.
+   Do not upload this ZIP as a single file. Keep CNAME. Replace index.html,
+   script.js and styles.css and upload all image assets beside them.
+
+2) Product corrections in this build:
+   - GTA V (PS4): uses gta-v-ps4-cover.jpg, taken from the exact cover image supplied.
+   - GTA VI: €59.99 and uses gta6-listing.webp (a clearly labelled listing graphic,
+     not an official retail box cover).
+   - Product names, prices and descriptions remain visible on cards.
+   - Existing Revolut checkout URL is preserved exactly.
+
+3) ORDER EMAIL NOTIFICATIONS (EmailJS)
+   Important: a static GitHub Pages site cannot securely confirm Revolut payment.
+   Email sent from the website at checkout is an ORDER REQUEST only, not proof of
+   payment and not a confirmed/paid order. Verify payment in Revolut before dispatch.
+
+   A. Create an account at https://www.emailjs.com/
+   B. In Email Services, connect the mailbox that should receive order notifications.
+   C. Create an email template with these variables:
+      {{customer_name}}
+      {{customer_email}}
+      {{customer_phone}}
+      {{shipping_address}}
+      {{order_items}}
+      {{order_total}}
+      {{order_status}}
+   D. Set the template recipient ("To email") to your own store email address.
+      You can set "Reply-To" to {{customer_email}}.
+   E. Copy your EmailJS Public Key, Service ID and Template ID.
+   F. Open script.js and replace these three placeholder strings:
+      ADD_EMAILJS_PUBLIC_KEY
+      ADD_EMAILJS_SERVICE_ID
+      ADD_EMAILJS_TEMPLATE_ID
+   G. Save and commit script.js. Test with a low-value/test order request and
+      check that the store inbox receives the order details.
+
+4) CUSTOMER ORDER CONFIRMATION
+   Do not send a message saying "payment received" just because the customer
+   clicked the Revolut button. First check the transaction in Revolut.
+   Then send the customer a confirmation email manually, or connect a verified
+   Revolut webhook/backend before automating paid confirmations.
+
+5) BEFORE LAUNCH
+   - Confirm stock, delivery price/time, returns terms, seller identity and taxes.
+   - Test every product image, basket quantity controls and Revolut link.
+   - Make a test payment only if you can safely refund it.
+   - Never publish false stock claims, fake reviews or unverified delivery promises.
+
+Support email currently shown: support@game-good-now.com
+Existing Revolut checkout URL is kept in script.js.

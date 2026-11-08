@@ -3,21 +3,34 @@
 // Existing Revolut payment destination retained exactly as supplied in the original project.
 const REVOLUT_CHECKOUT_URL = 'https://checkout.revolut.com/pay/34bd909a-12e7-49f8-a393-540bd03d9c2f';
 
+// Optional EmailJS settings. Add your own IDs after creating the EmailJS templates.
+// This sends an ORDER REQUEST notification; it does NOT verify Revolut payment.
+const EMAILJS_PUBLIC_KEY = 'ADD_EMAILJS_PUBLIC_KEY';
+const EMAILJS_SERVICE_ID = 'ADD_EMAILJS_SERVICE_ID';
+const EMAILJS_TEMPLATE_ID = 'ADD_EMAILJS_TEMPLATE_ID';
+
 const products = [
-  { name: "Baldur's Gate 3", price: 54, img: 'IMG_9089.jpg', cat: 'spil' },
-  { name: 'GTA V (PS5)', price: 24.99, img: 'IMG_9087.jpg', cat: 'spil' },
-  { name: 'EA Sports FC 27', price: 67, img: 'IMG_9088.jpg', cat: 'spil' },
-  { name: "Elden Ring Collector's", price: 87, img: 'IMG_9090.jpg', cat: 'spil' },
-  { name: 'UFC 6', price: 60, img: 'IMG_9091.jpg', cat: 'spil' },
-  { name: 'EA Sports FC 26', price: 60, img: 'IMG_9092.jpg', cat: 'spil' },
-  { name: 'The Last of Us Part I', price: 47, img: 'IMG_9093.jpg', cat: 'spil' },
-  { name: 'Uncharted Legacy of Thieves', price: 40, img: 'IMG_9094.jpg', cat: 'spil' },
-  { name: 'Red Dead Redemption', price: 44, img: 'IMG_9095.jpg', cat: 'spil' },
-  { name: '007 First Light', price: 67, img: 'IMG_9096.jpg', cat: 'spil' },
-  { name: 'Mafia: The Old Country', price: 60, img: 'IMG_9097.jpg', cat: 'spil' },
-  { name: 'Far Cry 6', price: 33, img: 'IMG_9098.jpg', cat: 'spil' },
-  { name: 'Battlefield 6', price: 67, img: 'IMG_9099.jpg', cat: 'spil' },
-  { name: 'God of War Ragnarök', price: 54, img: 'IMG_9100.jpg', cat: 'spil' },
+  { name: "Baldur's Gate 3 (PS5)", price: 54, img: 'IMG_9089.jpg', cat: 'spil', description: 'PlayStation 5 version. Explore the world of Baldur’s Gate in this story-driven role-playing adventure.' },
+  {
+    name: 'GTA V (PS5)', price: 24.99, img: 'IMG_9087.jpg', cat: 'spil',
+    description: 'PlayStation 5 version. Explore Los Santos in the acclaimed open-world action adventure, enhanced for PS5.'
+  },
+  {
+    name: 'GTA VI (PS5)', price: 59.99, img: 'gta6-listing.webp', cat: 'spil',
+    description: 'Listed for PlayStation 5. Upcoming title; availability, release and delivery must be confirmed before accepting payment.'
+  },
+  { name: 'EA Sports FC 27 (PS5)', price: 67, img: 'IMG_9088.jpg', cat: 'spil', description: 'PlayStation 5 football game.' },
+  { name: "Elden Ring Collector's Edition (PS5)", price: 87, img: 'IMG_9090.jpg', cat: 'spil', description: 'PlayStation 5 edition. Explore a vast fantasy world in this action role-playing game.' },
+  { name: 'UFC 6 (PS5)', price: 60, img: 'IMG_9091.jpg', cat: 'spil', description: 'PlayStation 5 mixed martial arts fighting game.' },
+  { name: 'EA Sports FC 26 (PS5)', price: 60, img: 'IMG_9092.jpg', cat: 'spil', description: 'PlayStation 5 football game.' },
+  { name: 'The Last of Us Part I (PS5)', price: 47, img: 'IMG_9093.jpg', cat: 'spil', description: 'PlayStation 5 remake. Follow Joel and Ellie through a gripping post-apocalyptic story.' },
+  { name: 'Uncharted: Legacy of Thieves Collection (PS5)', price: 40, img: 'IMG_9094.jpg', cat: 'spil', description: 'PlayStation 5 collection featuring cinematic action-adventure journeys.' },
+  { name: 'Red Dead Redemption (PS5 compatible)', price: 44, img: 'IMG_9095.jpg', cat: 'spil', description: 'Playable on PlayStation 5. Check the exact edition and stock before ordering.' },
+  { name: '007 First Light (PS5)', price: 67, img: 'IMG_9096.jpg', cat: 'spil', description: 'PlayStation 5 action-adventure game.' },
+  { name: 'Mafia: The Old Country (PS5)', price: 60, img: 'IMG_9097.jpg', cat: 'spil', description: 'PlayStation 5 crime action-adventure set in the origins of the Mafia.' },
+  { name: 'Far Cry 6 (PS5)', price: 33, img: 'IMG_9098.jpg', cat: 'spil', description: 'PlayStation 5 version. Fight to liberate the island of Yara.' },
+  { name: 'Battlefield 6 (PS5)', price: 67, img: 'IMG_9099.jpg', cat: 'spil', description: 'PlayStation 5 first-person military shooter.' },
+  { name: 'God of War Ragnarök (PS5)', price: 54, img: 'IMG_9100.jpg', cat: 'spil', description: 'PlayStation 5 version. Continue Kratos and Atreus’ journey through the Norse realms.' },
   { name: 'PlayStation 5', price: 539, img: 'IMG_9116.jpg', cat: 'konsol' },
   { name: 'Xbox Series X', price: 579, img: 'IMG_9117.jpg', cat: 'konsol' },
   { name: 'Nintendo Switch OLED', price: 335, img: 'switch-oled.jpg', cat: 'konsol' },
@@ -64,7 +77,7 @@ function render() {
   list.forEach(product => {
     const card = document.createElement('article');
     card.className = 'card';
-    card.innerHTML = `<div class="product-image-wrap"><img src="${safeText(product.img)}" alt="${safeText(product.name)}" loading="lazy"><span class="product-category">${product.cat === 'spil' ? 'GAME' : product.cat === 'konsol' ? 'CONSOLE' : 'ACCESSORY'}</span></div><div class="product-info"><h3>${safeText(product.name)}</h3><div class="product-bottom"><strong class="price">${money(product.price)}</strong><button class="add-button" type="button" aria-label="Add ${safeText(product.name)} to basket">＋</button></div><button class="buy-button" type="button">Add to basket</button></div>`;
+    card.innerHTML = `<div class="product-image-wrap"><img src="${safeText(product.img)}" alt="${safeText(product.name)}" loading="lazy"><span class="product-category">${product.cat === 'spil' ? 'GAME' : product.cat === 'konsol' ? 'CONSOLE' : 'ACCESSORY'}</span></div><div class="product-info"><h3>${safeText(product.name)}</h3><p class="product-description">${safeText(product.description || (product.cat === 'spil' ? 'Video game. Check platform, edition and availability with us before ordering.' : product.cat === 'konsol' ? 'Gaming console. Please contact us to confirm stock and delivery details.' : 'Gaming accessory. Please check compatibility and availability before ordering.'))}</p><div class="product-bottom"><strong class="price">${money(product.price)}</strong><button class="add-button" type="button" aria-label="Add ${safeText(product.name)} to basket">＋</button></div><button class="buy-button" type="button">Add to basket</button></div>`;
     card.querySelector('.add-button').addEventListener('click', () => addDeal(product.name, product.price, 1, product.img));
     card.querySelector('.buy-button').addEventListener('click', () => addDeal(product.name, product.price, 1, product.img));
     grid.appendChild(card);
@@ -146,6 +159,26 @@ function confirmOrder() {
     total, currency: 'EUR', createdAt: new Date().toISOString()
   };
   try { localStorage.setItem('lastOrder', JSON.stringify(order)); } catch (_) { /* no local storage available */ }
+
+  // If EmailJS has been configured, send the store an order-request email before redirecting.
+  // The email must not be described as proof of payment; Revolut payment still needs verification.
+  const emailReady = window.emailjs &&
+    EMAILJS_PUBLIC_KEY !== 'ADD_EMAILJS_PUBLIC_KEY' &&
+    EMAILJS_SERVICE_ID !== 'ADD_EMAILJS_SERVICE_ID' &&
+    EMAILJS_TEMPLATE_ID !== 'ADD_EMAILJS_TEMPLATE_ID';
+  if (emailReady) {
+    const orderLines = order.items.map(item => `${item.quantity} x ${item.name} — ${money(item.price * item.quantity)}`).join('\\n');
+    window.emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+      customer_name: order.customer.name,
+      customer_email: order.customer.email,
+      customer_phone: order.customer.phone || 'Not provided',
+      shipping_address: order.customer.address,
+      order_items: orderLines,
+      order_total: money(total),
+      order_status: 'Order request — payment not yet verified'
+    }).catch(error => console.error('Order notification email failed:', error));
+  }
+
   // Preserve the original payment flow and exact Revolut checkout URL.
   const paymentWindow = window.open(REVOLUT_CHECKOUT_URL, '_blank', 'noopener,noreferrer');
   if (!paymentWindow) window.location.href = REVOLUT_CHECKOUT_URL;

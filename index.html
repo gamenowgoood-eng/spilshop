@@ -45,7 +45,7 @@
     <section class="section deals-section" id="deals"><div class="container">
       <div class="section-heading"><div><div class="eyebrow">HAND-PICKED</div><h2>Featured <span>offers</span></h2></div><p>Take a look at selected items from our store.</p></div>
       <div class="deals-grid">
-        <article class="deal-card deal-gta"><div class="deal-copy"><span class="pill">PRE-ORDER LISTING</span><h3>GTA VI</h3><p>Upcoming release listing. Artwork and release details will be confirmed when officially available.</p><div class="deal-price">€59.99</div><button class="primary-btn" onclick="addDeal('GTA VI Pre-order',59.99,1)">Add to basket <span>＋</span></button></div><div class="deal-art gta-art" aria-label="GTA VI pre-order artwork placeholder"><span>GTA<br>VI</span></div></article>
+        <article class="deal-card deal-gta"><div class="deal-copy"><span class="pill">PRE-ORDER LISTING</span><h3>GTA VI</h3><p>Upcoming release listing. Artwork and release details will be confirmed when officially available.</p><div class="deal-price">€59.99</div><button class="primary-btn" onclick="addDeal('GTA VI',59.99,1,'gta6-listing.webp')">Add to basket <span>＋</span></button></div><div class="deal-art gta-art"><img src="gta6-listing.webp" alt="GTA VI listing artwork"></div></article>
         <article class="deal-card deal-console"><div class="deal-copy"><span class="pill">BUNDLE LISTING</span><h3>PS5 + GTA</h3><p>Console bundle listing with DualSense.</p><div class="deal-price"><del>€699</del> €579</div><button class="primary-btn" onclick="addDeal('PS5 + GTA Bundle',579,1)">Add to basket <span>＋</span></button></div><div class="deal-art console-art" aria-hidden="true"><span>PS5</span></div></article>
       </div>
       <p class="small-note">Availability, release dates, delivery costs and final order details should be confirmed before payment.</p>
@@ -73,9 +73,10 @@
         <button class="primary-btn checkout-btn" type="button" onclick="confirmOrder()">Continue to Revolut <span>↗</span></button>
       </div>
       <button class="primary-btn checkout-btn" id="show-checkout" type="button" onclick="showCheckoutForm()">Continue to checkout <span>→</span></button><button class="clear-btn" type="button" onclick="clearCart()">Clear basket</button>
-      <p class="payment-note">You will be redirected to Revolut to complete payment. Your order details are not automatically sent to the store by this static website.</p>
+      <p class="payment-note">You will be redirected to Revolut to complete payment. An order request is not a payment confirmation. Your order is accepted only after the payment and stock have been verified.</p>
     </div>
   </div>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
