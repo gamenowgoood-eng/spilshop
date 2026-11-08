@@ -10,3 +10,20 @@
 @media(max-width:950px){.product-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.main-nav{gap:18px}.feature-card{padding:26px}.feature-card h3{font-size:2.3rem}}
 @media(max-width:680px){.container{width:calc(100% - 30px)}.announcement{font-size:.49rem;letter-spacing:.1em;gap:7px}.header-inner{height:66px;gap:10px}.brand{gap:7px}.brand-icon{width:32px;height:32px}.brand-name{font-size:.72rem}.main-nav{display:none}.cart-trigger{padding:8px 10px;font-size:.7rem}.hero{min-height:500px}.hero-content{padding:70px 0 56px}.hero h1{font-size:clamp(3.3rem,13vw,4.8rem)}.hero-copy{max-width:340px;font-size:.9rem}.hero-proof{flex-direction:column;gap:9px;margin-top:34px}.hero-side-label{right:12px;bottom:26px;font-size:.5rem}.benefit-grid{grid-template-columns:1fr;gap:15px;padding:18px 0}.benefit-icon{width:34px;height:34px}.section{padding:66px 0}.section-head{display:block;margin-bottom:25px}.section-head>p{margin-top:11px;font-size:.78rem}.featured-grid{grid-template-columns:1fr;gap:13px}.feature-card{min-height:300px;padding:23px}.feature-card h3{font-size:2.35rem}.feature-copy{width:70%}.feature-card p{max-width:235px;font-size:.72rem}.feature-image{width:38%;height:75%;right:-1%}.gta-feature-image{width:39%;height:85%}.console-feature-image{width:42%;height:78%}.feature-bottom{gap:10px;margin-top:20px}.feature-bottom strong{font-size:1.3rem}.feature-bottom .button{padding:10px 12px;font-size:.63rem;gap:9px}.coming-soon{align-items:flex-start;padding:21px 18px 48px;gap:12px}.coming-soon h3{font-size:1.35rem}.coming-soon p{font-size:.68rem}.coming-art{width:88px;flex-basis:88px;margin-top:28px}.coming-status{right:18px;bottom:15px}.shop-toolbar{align-items:stretch;flex-direction:column;gap:13px}.filter-list{gap:6px}.filter{padding:8px 11px;font-size:.64rem}.search-box{width:100%}.search-suggestions{top:auto;right:0;width:100%}.product-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.product-image-wrap{height:150px;padding:10px}.product-info{padding:11px}.product-info h3{font-size:.75rem;min-height:40px}.product-description{font-size:.63rem;min-height:58px}.price{font-size:.95rem}.buy-button{font-size:.63rem;padding:9px}.why-section{padding:65px 0}.why-inner{grid-template-columns:1fr;gap:22px}.why-inner h2{font-size:2.7rem}.why-copy>p{font-size:.8rem}.why-points{gap:8px}.why-points span{font-size:.62rem}.support-section{padding:58px 0}.support-inner{align-items:stretch;flex-direction:column;gap:23px}.support-inner h2{font-size:2.35rem}.support-card{min-width:0;padding:15px}.support-card b{font-size:.68rem}.footer-top{align-items:flex-start;flex-direction:column;gap:11px}.footer-top>a:last-child{margin-left:0}.footer-bottom{flex-direction:column;gap:5px}.modal-content{padding:25px 16px}.cart-item{gap:7px}.cart-item>img{width:37px;height:37px}.qty-control{gap:4px}.cart-item>strong{font-size:.68rem}.form-row{grid-template-columns:1fr;gap:0}}
 @media(max-width:360px){.product-grid{grid-template-columns:1fr}.product-image-wrap{height:190px}.feature-copy{width:76%}.feature-image{opacity:.72}.hero-buttons{align-items:flex-start;flex-direction:column;gap:10px}}
+
+/* Featured GTA VI card refinement */
+.feature-gta6 .feature-copy{width:60%;max-width:560px}
+.feature-gta6 h3{max-width:100%;font-size:clamp(2.2rem,4.3vw,3rem);line-height:1.05}
+.feature-gta6 p{max-width:340px}
+.feature-gta6 .feature-bottom strong{white-space:nowrap}
+.feature-gta6 .feature-bottom .button:disabled{opacity:.78;cursor:not-allowed;filter:saturate(.65)}
+.gta6-feature-image{right:2%;width:36%;height:82%;object-fit:contain}
+@media(max-width:680px){
+  .feature-gta6{min-height:330px}
+  .feature-gta6 .feature-copy{width:62%}
+  .feature-gta6 h3{font-size:2.5rem}
+  .feature-gta6 p{max-width:220px;font-size:.7rem}
+  .gta6-feature-image{right:1%;width:36%;height:76%}
+  .feature-gta6 .feature-bottom{align-items:flex-start;flex-direction:column}
+  .feature-gta6 .feature-bottom strong{font-size:1.15rem}
+}
