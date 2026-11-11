@@ -1,75 +1,81 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#080b14">
-  <meta name="description" content="Shop PlayStation 5 games, plus PlayStation, Xbox and Nintendo consoles and gaming accessories at Game Good Now.">
-  <title>Game Good Now — Premium Gaming Store</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#090d18">
+  <meta name="description" content="Shop video games, consoles and gaming accessories at Game Good Now.">
+  <title>Game Good Now | Games, Consoles & Accessories</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="announcement"><span class="announcement-dot"></span> PS5 GAMES · PLAYSTATION, XBOX & NINTENDO CONSOLES AND ACCESSORIES <span class="announcement-sep">/</span> PRICES IN EUR</div>
-  <header class="site-header">
+  <div class="topline">GAME GOOD NOW <span>•</span> GAMES, CONSOLES & ACCESSORIES</div>
+  <header class="header">
     <div class="container header-inner">
-      <a class="brand" href="#home" aria-label="Game Good Now home"><span class="brand-icon">G<span>G</span></span><span class="brand-name">GAME GOOD <b>NOW</b></span></a>
-      <nav class="main-nav" aria-label="Main navigation"><a href="#featured">Featured</a><a href="#shop">Shop</a><a href="#why-us">Why us</a><a href="#support">Support</a></nav>
-      <button class="cart-trigger" type="button" onclick="openCart()"><span class="cart-symbol">▣</span><span>Basket</span><span class="cart-count" id="cart-count">0</span></button>
+      <a class="logo" href="#top" aria-label="Game Good Now home"><span class="logo-mark">GG</span><span>GAME GOOD <b>NOW</b></span></a>
+      <nav class="nav" aria-label="Main navigation">
+        <a href="#deals">Featured</a><a href="#products">Shop</a><a href="#about">About</a><a href="#help">Help</a>
+      </nav>
+      <div class="header-right">
+        <label class="sr-only" for="lang-select">Language</label>
+        <select id="lang-select" aria-label="Language"><option value="en">EN</option></select>
+        <button class="cart-btn" type="button" onclick="openCart()"><span aria-hidden="true">🛒</span> Cart <span id="cart-count" class="cart-count">0</span></button>
+      </div>
     </div>
   </header>
 
-  <main id="home">
+  <main id="top">
     <section class="hero">
-      <div class="hero-grid"></div><div class="hero-aura"></div>
-      <div class="container hero-content">
-        <div class="eyebrow"><span class="eyebrow-line"></span> THE PLAYSTATION 5 EDITION</div>
-        <h1>Play more.<br><span>Live the game.</span></h1>
-        <p class="hero-copy">Discover PlayStation 5 games, plus console essentials and accessories for PlayStation, Xbox and Nintendo.</p>
-        <div class="hero-buttons"><a class="button button-primary" href="#shop">Explore the store <span>↗</span></a><a class="button button-quiet" href="#featured">View featured picks <span>↓</span></a></div>
-        <div class="hero-proof"><span><i>✓</i> PS5-only game selection</span><span><i>✓</i> Secure payment via Revolut</span></div>
+      <div class="hero-glow glow-one"></div><div class="hero-glow glow-two"></div>
+      <div class="container hero-inner">
+        <div class="eyebrow"><span class="live-dot"></span> YOUR NEXT LEVEL STARTS HERE</div>
+        <h1>Level up your<br><span>gaming setup.</span></h1>
+        <p>Explore video games, consoles and accessories for your next adventure.</p>
+        <div class="hero-actions"><a class="primary-btn" href="#products">Explore products <span>↗</span></a><a class="text-link" href="#deals">See featured picks</a></div>
+        <div class="hero-meta"><span>GAMES</span><i></i><span>CONSOLES</span><i></i><span>ACCESSORIES</span></div>
       </div>
-      <div class="hero-side-label">GAME GOOD NOW <span>—</span> LEVEL UP</div>
+      <div class="hero-orbit orbit-a"></div><div class="hero-orbit orbit-b"></div>
     </section>
 
-    <section class="benefit-bar"><div class="container benefit-grid"><div class="benefit"><span class="benefit-icon">◈</span><div><b>Clear product details</b><small>Platform and item information</small></div></div><div class="benefit"><span class="benefit-icon">↗</span><div><b>Revolut checkout</b><small>Payment handled by Revolut</small></div></div><div class="benefit"><span class="benefit-icon">✉</span><div><b>Customer support</b><small>support@game-good-now.com</small></div></div></div></section>
+    <section class="trust-strip"><div class="container trust-items"><div><b>01</b><span>Secure checkout<br><small>Payment handled by Revolut</small></span></div><div><b>02</b><span>Customer support<br><small>support@game-good-now.com</small></span></div><div><b>03</b><span>Clear order details<br><small>Review your basket before paying</small></span></div></div></section>
 
-    <section class="section featured-section" id="featured"><div class="container">
-      <div class="section-head"><div><div class="eyebrow">IN THE SPOTLIGHT</div><h2>Featured <span>for you.</span></h2></div><p>A closer look at selected PS5 games and gaming essentials across leading platforms.</p></div>
-      <div class="featured-grid">
-        <article class="feature-card feature-gta feature-gta6"><div class="feature-copy"><span class="tag tag-cyan">PS5 · UPCOMING GAME</span><h3>GTA VI</h3><p>Grand Theft Auto VI is an upcoming title. Release date and availability will be confirmed before orders open.</p><div class="feature-bottom"><strong>$59.99 USD</strong><button class="button button-primary" type="button" disabled aria-disabled="true">Coming soon</button></div></div><img class="feature-image gta-feature-image gta6-feature-image" src="gta6-listing.webp" alt="Grand Theft Auto VI upcoming title artwork"></article>
-        <article class="feature-card feature-console"><div class="feature-copy"><span class="tag tag-violet">CONSOLE BUNDLE</span><h3>Make room<br>for more.</h3><p>PlayStation 5 console bundle listing. Check included items and availability before ordering.</p><div class="feature-bottom"><strong>€579</strong><button class="button button-primary" onclick="addDeal('PS5 Console Bundle',579,1,'IMG_9116.webp')">Add to basket <span>＋</span></button></div></div><img class="feature-image console-feature-image" src="IMG_9116.webp" alt="PlayStation 5 console"></article>
+    <section class="section deals-section" id="deals"><div class="container">
+      <div class="section-heading"><div><div class="eyebrow">HAND-PICKED</div><h2>Featured <span>offers</span></h2></div><p>Take a look at selected items from our store.</p></div>
+      <div class="deals-grid">
+        <article class="deal-card deal-gta"><div class="deal-copy"><span class="pill">PRE-ORDER LISTING</span><h3>GTA VI</h3><p>Upcoming release listing. Artwork and release details will be confirmed when officially available.</p><div class="deal-price">€59.99</div><button class="primary-btn" onclick="addDeal('GTA VI Pre-order',59.99,1)">Add to basket <span>＋</span></button></div><div class="deal-art gta-art" aria-label="GTA VI pre-order artwork placeholder"><span>GTA<br>VI</span></div></article>
+        <article class="deal-card deal-console"><div class="deal-copy"><span class="pill">BUNDLE LISTING</span><h3>PS5 + GTA</h3><p>Console bundle listing with DualSense.</p><div class="deal-price"><del>€699</del> €579</div><button class="primary-btn" onclick="addDeal('PS5 + GTA Bundle',579,1)">Add to basket <span>＋</span></button></div><div class="deal-art console-art" aria-hidden="true"><span>PS5</span></div></article>
       </div>
+      <p class="small-note">Availability, release dates, delivery costs and final order details should be confirmed before payment.</p>
     </div></section>
 
-    <section class="section shop-section" id="shop"><div class="container">
-      <div class="section-head"><div><div class="eyebrow">THE COLLECTION</div><h2>Find your <span>next game.</span></h2></div><p>Browse our PS5-only game selection, plus PlayStation, Xbox and Nintendo consoles and accessories.</p></div>
-      <div class="shop-toolbar"><div class="filter-list" role="group" aria-label="Filter products"><button class="filter active" data-filter="all">All products</button><button class="filter" data-filter="spil">PS5 games</button><button class="filter" data-filter="konsol">Consoles</button><button class="filter" data-filter="tilbehor">Accessories</button></div><label class="search-box"><span>⌕</span><input type="search" id="search" placeholder="Search the store…" aria-label="Search products"><span class="search-shortcut">⌘ K</span></label><div id="search-suggestions" class="search-suggestions"></div></div>
-      <div class="product-grid" id="grid" aria-live="polite"></div>
-      <p class="catalogue-note">Product availability, edition, condition, delivery cost and estimated delivery time are confirmed before an order is accepted.</p>
+    <section class="section products-section" id="products"><div class="container">
+      <div class="section-heading"><div><div class="eyebrow">THE STORE</div><h2>Find your <span>gear.</span></h2></div><p>Browse games, consoles and accessories.</p></div>
+      <div class="shop-tools"><div class="filters"><button class="filter active" data-filter="all">All items</button><button class="filter" data-filter="spil">Games</button><button class="filter" data-filter="konsol">Consoles</button><button class="filter" data-filter="tilbehor">Accessories</button></div><div class="search-wrapper"><span>⌕</span><input type="search" id="search" placeholder="Search products..." autocomplete="off" aria-label="Search products"><div id="search-suggestions" class="search-suggestions"></div></div></div>
+      <div class="grid" id="grid" aria-live="polite"></div>
     </div></section>
 
-    <section class="why-section" id="why-us"><div class="container why-inner"><div><div class="eyebrow">A BETTER WAY TO SHOP</div><h2>Good games.<br><span>Clear choices.</span></h2></div><div class="why-copy"><p>Game Good Now is an independent online gaming storefront. Our game catalogue is dedicated to PlayStation 5, while selected consoles and accessories from PlayStation, Xbox and Nintendo are also featured. We aim to make browsing simple, product information clear and the order process straightforward.</p><div class="why-points"><div><b>01</b><span>PS5-first selection</span></div><div><b>02</b><span>Transparent order process</span></div><div><b>03</b><span>Support when you need it</span></div></div></div></div></section>
+    <section class="about-section" id="about"><div class="container about-inner"><div><div class="eyebrow">ABOUT THE STORE</div><h2>Gaming gear.<br><span>Made simple.</span></h2></div><div><p>Game Good Now is an online store listing video games, consoles and gaming accessories. We aim to make browsing and ordering straightforward, with clear product information and checkout handled by our payment provider.</p><a class="text-link" href="mailto:support@game-good-now.com">Contact customer support ↗</a></div></div></section>
 
-    <section class="support-section" id="support"><div class="container support-inner"><div><div class="eyebrow">HERE TO HELP</div><h2>Questions? <span>We're listening.</span></h2><p>Need to check stock, compatibility or delivery details? Contact us before placing your order.</p></div><a class="support-card" href="mailto:support@game-good-now.com"><span class="support-icon">✉</span><span><small>EMAIL OUR TEAM</small><b>support@game-good-now.com</b></span><span class="support-arrow">↗</span></a></div></section>
+    <section class="help-section" id="help"><div class="container"><div class="eyebrow">CUSTOMER SUPPORT</div><h2>Need a hand? <span>Contact us.</span></h2><div class="help-grid"><a href="mailto:support@game-good-now.com"><b>Email support</b><span>support@game-good-now.com</span><i>↗</i></a><div><b>Before you order</b><span>Ask us to confirm stock, delivery cost and estimated delivery time.</span></div><div><b>Order questions</b><span>Include your order details when contacting customer support.</span></div></div></div></section>
   </main>
 
-  <footer class="site-footer"><div class="container footer-top"><a class="brand" href="#home"><span class="brand-icon">G<span>G</span></span><span class="brand-name">GAME GOOD <b>NOW</b></span></a><p>PS5 games, plus PlayStation, Xbox and Nintendo consoles and accessories.</p><a href="mailto:support@game-good-now.com">Contact support ↗</a></div><div class="container footer-bottom"><span>© <span id="year"></span> Game Good Now. All rights reserved.</span><span>Prices displayed in EUR · Checkout by Revolut</span></div></footer>
+  <footer class="footer"><div class="container footer-main"><a class="logo" href="#top"><span class="logo-mark">GG</span><span>GAME GOOD <b>NOW</b></span></a><p>Games, consoles and accessories.</p><a href="mailto:support@game-good-now.com">support@game-good-now.com</a></div><div class="container footer-bottom"><span>© <span id="year"></span> Game Good Now</span><span>Prices shown in EUR. Payment is processed by Revolut.</span></div></footer>
 
-  <div id="cart-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="cart-title"><div class="modal-content"><button class="close" type="button" onclick="closeCart()" aria-label="Close basket">×</button><div class="eyebrow">YOUR SELECTION</div><h2 id="cart-title">Your basket</h2><div id="cart-items"></div><p id="cart-total" class="cart-total">Total: €0.00</p>
-    <div id="checkout-form" class="checkout-form" hidden><h3>Delivery details</h3><p class="form-hint">Enter your details to submit your order request and continue to Revolut.</p>
-      <div class="form-row"><div class="form-group"><label for="fname">First name *</label><input id="fname" autocomplete="given-name" required></div><div class="form-group"><label for="lname">Last name *</label><input id="lname" autocomplete="family-name" required></div></div>
-      <div class="form-group"><label for="email">Email address *</label><input type="email" id="email" autocomplete="email" required></div><div class="form-group"><label for="phone">Phone number</label><input type="tel" id="phone" autocomplete="tel"></div><div class="form-group"><label for="address">Street address *</label><input id="address" autocomplete="street-address" required></div>
-      <div class="form-row"><div class="form-group"><label for="city">City *</label><input id="city" autocomplete="address-level2" required></div><div class="form-group"><label for="postal">Postal code *</label><input id="postal" autocomplete="postal-code" required></div></div><div class="form-group"><label for="country">Country *</label><input id="country" autocomplete="country-name" placeholder="Country" required></div>
-      <label class="consent"><input type="checkbox" id="terms-consent"> <span>I have reviewed the order details and understand that stock, delivery and payment must be verified before the order is confirmed.</span></label>
-      <button class="button button-primary checkout-btn" type="button" onclick="confirmOrder()">Continue to Revolut <span>↗</span></button>
+  <div id="cart-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="cart-title">
+    <div class="modal-content"><button class="close" type="button" onclick="closeCart()" aria-label="Close cart">×</button><div class="eyebrow">YOUR SELECTION</div><h2 id="cart-title">Shopping basket</h2><div id="cart-items"></div><p id="cart-total" class="cart-total">Total: €0</p>
+      <div id="checkout-form" class="checkout-form" style="display:none"><h3>Delivery details</h3><p class="form-hint">Enter your details before continuing to the existing Revolut checkout.</p>
+        <div class="form-row"><div class="form-group"><label for="fname">First name *</label><input id="fname" autocomplete="given-name" required></div><div class="form-group"><label for="lname">Last name *</label><input id="lname" autocomplete="family-name" required></div></div>
+        <div class="form-group"><label for="email">Email *</label><input type="email" id="email" autocomplete="email" required></div><div class="form-group"><label for="phone">Phone</label><input type="tel" id="phone" autocomplete="tel"></div><div class="form-group"><label for="address">Address *</label><input id="address" autocomplete="street-address" required></div>
+        <div class="form-row"><div class="form-group"><label for="city">City *</label><input id="city" autocomplete="address-level2" required></div><div class="form-group"><label for="postal">Postal code *</label><input id="postal" autocomplete="postal-code" required></div></div><div class="form-group"><label for="country">Country *</label><input id="country" autocomplete="country-name" value="Denmark" required></div>
+        <button class="primary-btn checkout-btn" type="button" onclick="confirmOrder()">Continue to Revolut <span>↗</span></button>
+      </div>
+      <button class="primary-btn checkout-btn" id="show-checkout" type="button" onclick="showCheckoutForm()">Continue to checkout <span>→</span></button><button class="clear-btn" type="button" onclick="clearCart()">Clear basket</button>
+      <p class="payment-note">You will be redirected to Revolut to complete payment. Your order details are not automatically sent to the store by this static website.</p>
     </div>
-    <button class="button button-primary checkout-btn" id="show-checkout" type="button" onclick="showCheckoutForm()">Continue to checkout <span>→</span></button><button class="clear-btn" type="button" onclick="clearCart()">Clear basket</button>
-    <p class="payment-note">Submitting your details creates an order request, not a payment confirmation. Payment is completed separately with Revolut. We will verify payment and availability before confirming fulfilment.</p>
-  </div></div>
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  </div>
   <script src="script.js"></script>
 </body>
 </html>
