@@ -1,0 +1,24 @@
+GAME GOOD NOW — PATCH TIL KUN DE TO FEATURED OFFER-BOKSE
+
+Denne ZIP indeholder KUN:
+- index.html
+- styles.css
+- denne vejledning
+
+Billederne genbruger eksisterende filer i dit nuværende GitHub-repository:
+- gta6-listing.webp
+- IMG_9116.webp
+
+VIGTIGT:
+1. Download og pak denne ZIP ud.
+2. Åbn dit eksisterende GitHub-repository.
+3. Erstat KUN index.html og styles.css med filerne fra denne patch.
+4. Upload IKKE en ny billedmappe, og slet IKKE dine eksisterende billeder.
+5. Behold alle øvrige filer uændrede.
+6. Commit ændringerne og vent på GitHub Pages.
+
+Tilbuddene bliver:
+- GTA VI: kun GTA VI-billedet.
+- PS5 + GTA VI: PS5-konsolbilledet sammen med GTA VI-billedet.
+
+Priserne og kurvfunktionerne er bevaret fra den eksisterende side.
