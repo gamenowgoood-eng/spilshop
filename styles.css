@@ -15,3 +15,12 @@ img { max-width:100%; }
   .header-inner { min-width:0; }
   .logo { min-width:0; }
 }
+
+/* Featured offer artwork: keep each image with its matching offer */
+.deal-art.gta-art{right:10px;top:12px;width:43%;height:calc(100% - 24px);transform:none;background:transparent;display:flex;align-items:center;justify-content:center}
+.deal-art.gta-art img{width:100%;height:100%;object-fit:contain;border-radius:12px;filter:drop-shadow(0 12px 24px rgba(0,0,0,.35))}
+.deal-art.bundle-art{right:8px;top:18px;width:48%;height:calc(100% - 36px);transform:none;display:flex;align-items:center;justify-content:center;gap:5px;background:radial-gradient(ellipse,rgba(127,145,255,.18),transparent 70%)}
+.bundle-art img{height:78%;width:48%;object-fit:contain;filter:drop-shadow(0 10px 18px rgba(0,0,0,.35))}
+.bundle-art .bundle-console{width:47%}
+.bundle-art .bundle-game{width:43%;border-radius:7px}
+@media(max-width:640px){.deal-card{padding:22px;min-height:300px}.deal-copy{max-width:63%}.deal-art.gta-art{right:3px;width:39%}.deal-art.bundle-art{right:0;width:42%;gap:0}.bundle-art img{height:66%}}
