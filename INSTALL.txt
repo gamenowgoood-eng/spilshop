@@ -1,17 +1,1 @@
-GAME GOOD NOW — KUN DE TO FEATURED OFFER-BOKSE
-
-Denne patch indeholder kun 5 filer:
-- index.html
-- styles.css
-- offer-ps5-console.jpeg (dit PS5-billede)
-- offer-gta6-artwork.jpeg (dit GTA VI-billede)
-- INSTALL.txt
-
-Upload alle fem filer til roden af dit eksisterende GitHub Pages-repository og erstat index.html og styles.css.
-Behold alle andre filer og billeder uændrede. Slet ikke noget fra repositoryet.
-
-Resultat:
-1) GTA VI-boksen viser kun GTA VI-billedet stort.
-2) PS5 + GTA VI-boksen viser PS5-konsollen og GTA VI-billedet stort ved siden af hinanden.
-
-Priser, kurvfunktioner, øvrige produkter og Revolut-link er ikke ændret.
+Udskift kun den eksisterende IMG_9087.jpg i mappen spilshop med denne fil. Ingen andre filer skal ændres. Upload/commit ændringen til GitHub Pages for at se den live.
