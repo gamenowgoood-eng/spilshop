@@ -1,18 +1,13 @@
-GAME GOOD NOW – CUSTOMER POLICIES
+GAME GOOD NOW - CUSTOMER POLICIES
 
-Included file:
-- policies.html
-
-How to add it:
-1. Upload policies.html to the same root folder as your existing index.html in your GitHub Pages repository.
-2. Commit/save the change.
-3. The page should then be available at:
+1. Open your GitHub repository containing the website.
+2. Upload GameGoodNow-policies-easy.html into the same root folder as index.html.
+3. Rename the uploaded file to policies.html in GitHub, or save it locally as policies.html before uploading.
+4. Commit the change.
+5. After GitHub Pages updates, open:
    https://game-good-now.com/policies.html
 
-Important:
-- This file is a standalone, mobile-friendly policy page in the same dark gaming style.
-- It includes the requested dispatch time of 2 business days and estimated delivery of 4–7 days worldwide.
-- Shipping prices are not fixed in this policy; the checkout should show the actual shipping charge before payment.
-- Before publishing, complete the legal business name, registered address, registration number if applicable, and returns address.
-- Confirm that the support email address exists before publishing it as a working contact.
-- The wording is a starting draft, not legal advice. Have it checked against the laws that apply to the business and the countries where customers are located.
+IMPORTANT BEFORE PUBLISHING:
+Replace the seller identity, business address (if applicable), and returns address placeholders in the Contact section. Confirm the return process and legal disclosures are correct for the country where the seller is established and the countries served.
+
+This page is in English, mobile-friendly and does not change your homepage or checkout.
