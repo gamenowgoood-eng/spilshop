@@ -1,0 +1,25 @@
+GAME GOOD NOW — RETURNS & CUSTOMER POLICIES UPDATE
+
+This ZIP contains:
+- index.html — the current language-enabled shop with a Returns & Customer Policies footer link.
+- policies.html — the customer policy page updated with the business address and support email supplied by the shop owner.
+
+BUSINESS DETAILS INCLUDED
+Trading name: Game Good Now
+Business address: 12 Rue Martel, 75010 Paris, France
+Support email: support@game-good-now.com
+
+The return address is intentionally not guessed. Customers are asked to email support first and will receive the correct return instructions.
+
+UPLOAD TO GITHUB
+1. Download and unzip this package.
+2. Open the GitHub repository gamenowgoood-eng/spilshop.
+3. Upload BOTH index.html and policies.html to the repository root (the same folder as the current index.html).
+4. Replace the existing index.html when prompted. Add policies.html, or replace it if it already exists.
+5. Commit the changes and wait for GitHub Pages to publish.
+6. Check https://game-good-now.com/policies.html and click the Returns & Customer Policies link at the bottom of the shop.
+
+IMPORTANT BEFORE ACCEPTING CUSTOMER ORDERS
+The page now includes the supplied business address and support email, and no longer contains blank address placeholders. However, “Game Good Now” is identified as the trading name only. The legal name of the person or registered company operating the shop, and any applicable registration number, still need to be verified and disclosed where required. Also verify the actual return address, shipping destinations, delivery charges, privacy/cookie services and retention periods.
+
+This is a practical policy draft, not legal advice. Do not accept customer orders until the seller identity and required consumer information are accurate for the country/market in which the shop operates.
