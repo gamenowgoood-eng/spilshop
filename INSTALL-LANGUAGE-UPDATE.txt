@@ -1,0 +1,17 @@
+GAME GOOD NOW — LANGUAGE UPDATE (ONLY THE CHANGED FILES)
+
+This ZIP contains only the 3 files changed for the language selector and translations:
+- index.html
+- script.js
+- styles.css
+
+INSTALL ON GITHUB:
+1. Open your GitHub repository: gamenowgoood-eng/spilshop
+2. Open the repository root (same level where the current index.html is).
+3. Upload these three files from this ZIP.
+4. When GitHub asks, choose to replace/overwrite the existing files.
+5. Keep all existing product images, CNAME and other files. Do not delete them.
+6. Commit the changes.
+7. Wait for GitHub Pages to publish, then open https://game-good-now.com/ and refresh.
+
+The language selector includes English, German, French, Simplified Chinese, Spanish, Arabic (right-to-left), and Italian. The policy page is not changed in this language-only patch.

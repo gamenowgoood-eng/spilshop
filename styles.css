@@ -92,3 +92,15 @@ img { max-width:100%; }
   .offer-visual { height: 215px; }
   .offer-visual-bundle { height: 220px; }
 }
+
+/* Language selector and Arabic layout support */
+#lang-select{max-width:96px;cursor:pointer;direction:ltr}
+html[dir="rtl"] body{direction:rtl;text-align:right}
+html[dir="rtl"] .header-inner,html[dir="rtl"] .header-right{direction:rtl}
+html[dir="rtl"] .hero-actions,html[dir="rtl"] .hero-meta{direction:rtl}
+html[dir="rtl"] .product-category{left:auto;right:12px}
+html[dir="rtl"] .search-wrapper input{text-align:right}
+html[dir="rtl"] .modal-content{text-align:right}
+html[dir="rtl"] .close{right:auto;left:18px}
+html[dir="rtl"] .cart-total{text-align:left}
+html[dir="rtl"] .footer-bottom{direction:rtl}
