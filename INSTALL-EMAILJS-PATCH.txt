@@ -1,0 +1,24 @@
+GAME GOOD NOW — EMAILJS PATCH
+
+This patch contains only:
+- index.html
+- script.js
+
+It preserves the existing product list, prices, images, cart, translations, and Revolut checkout URL.
+
+INSTALL:
+1. Open your GitHub repository: gamenowgoood-eng/spilshop
+2. Choose Add file > Upload files.
+3. Upload BOTH index.html and script.js from this patch, replacing the existing files.
+4. Commit the changes to the main branch.
+5. Wait for GitHub Pages to publish, then test with your own email address.
+
+IMPORTANT:
+- This integration sends an INTERNAL order-request email to the store template.
+- It sends the email before redirecting the customer to the existing Revolut payment page.
+- It does NOT verify payment. Check Revolut manually before confirming or shipping.
+- The EmailJS template's Reply To field should be {{customer_email}} or {{email}}. This patch supplies both.
+- Never put your EmailJS Private Key in website code. Only the Public Key is used.
+- If the email send fails, the customer is not redirected to Revolut; the page displays an error so the request is not silently lost.
+
+The EmailJS template used is template_v9uyohy and the service is service_ugj62eh.

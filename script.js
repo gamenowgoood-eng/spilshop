@@ -143,7 +143,10 @@ function showCheckoutForm() {
   document.getElementById('checkout-form').style.display = 'block';
   document.getElementById('show-checkout').style.display = 'none';
 }
-function confirmOrder() {
+let orderSubmissionInProgress = false;
+
+async function confirmOrder() {
+  if (orderSubmissionInProgress) return;
   const ids = ['fname', 'lname', 'email', 'address', 'city', 'postal', 'country'];
   const values = Object.fromEntries(ids.map(id => [id, document.getElementById(id).value.trim()]));
   const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email);
@@ -154,18 +157,55 @@ function confirmOrder() {
     return;
   }
   if (!cart.length) { alert(({de:'Dein Warenkorb ist leer.',fr:'Votre panier est vide.',zh:'购物车为空。',es:'Tu carrito está vacío.',ar:'سلة التسوق فارغة.',it:'Il carrello è vuoto.'}[currentLanguage] || 'Your basket is empty.')); return; }
+
   const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+  const orderNumber = `GGN-${Date.now()}`;
+  const customerName = `${values.fname} ${values.lname}`;
+  const phone = document.getElementById('phone').value.trim();
+  const shippingAddress = `${values.address}, ${values.postal} ${values.city}, ${values.country}`;
+  const orderItems = cart.map(item => `${item.name} × ${item.qty} — €${(item.price * item.qty).toFixed(2)}`).join('\n');
   const order = {
-    customer: { name: `${values.fname} ${values.lname}`, email: values.email, phone: document.getElementById('phone').value.trim(), address: `${values.address}, ${values.postal} ${values.city}, ${values.country}` },
+    orderNumber,
+    customer: { name: customerName, email: values.email, phone, address: shippingAddress },
     items: cart.map(item => ({ name: item.name, price: item.price, quantity: item.qty })),
     total, currency: 'EUR', createdAt: new Date().toISOString()
   };
   try { localStorage.setItem('lastOrder', JSON.stringify(order)); } catch (_) { /* no local storage available */ }
-  // Preserve the original payment flow and exact Revolut checkout URL.
-  const paymentWindow = window.open(REVOLUT_CHECKOUT_URL, '_blank', 'noopener,noreferrer');
-  if (!paymentWindow) window.location.href = REVOLUT_CHECKOUT_URL;
-  alert(({de:`Du wirst zu Revolut weitergeleitet. Bitte bewahre deine Bestelldaten auf. Bestellwert: ${money(total)}. Kunden-E-Mail: ${values.email}.`,fr:`Vous allez être redirigé vers Revolut. Conservez les détails de votre commande. Total : ${money(total)}. E-mail : ${values.email}.`,zh:`即将跳转至 Revolut。请保存订单信息。订单总额：${money(total)}。客户邮箱：${values.email}。`,es:`Serás redirigido a Revolut. Guarda los datos del pedido. Total: ${money(total)}. Correo: ${values.email}.`,ar:`سيتم تحويلك إلى Revolut. يرجى الاحتفاظ بتفاصيل الطلب. الإجمالي: ${money(total)}. بريد العميل: ${values.email}.`,it:`Verrai reindirizzato a Revolut. Conserva i dettagli dell’ordine. Totale: ${money(total)}. E-mail cliente: ${values.email}.`}[currentLanguage] || `You are being sent to Revolut to complete payment. Please keep your order details. Order total: ${money(total)}. Customer email: ${values.email}.`));
-  closeCart();
+
+  const templateParams = {
+    order_number: orderNumber,
+    email: values.email,
+    customer_name: customerName,
+    customer_email: values.email,
+    customer_phone: phone || 'Not provided',
+    shipping_address: shippingAddress,
+    order_items: orderItems,
+    order_total: `€${total.toFixed(2)}`,
+    order_status: 'Payment not yet verified — check Revolut manually',
+    reply_to: values.email
+  };
+
+  const checkoutButton = document.querySelector('#checkout-form .checkout-btn');
+  orderSubmissionInProgress = true;
+  if (checkoutButton) { checkoutButton.disabled = true; checkoutButton.dataset.originalText = checkoutButton.textContent; checkoutButton.textContent = 'Sending order details…'; }
+
+  try {
+    if (!window.emailjs) throw new Error('EmailJS library did not load.');
+    await emailjs.send('service_ugj62eh', 'template_v9uyohy', templateParams, {
+      publicKey: 'S_AcPoR-Af1RxiYbc'
+    });
+  } catch (error) {
+    console.error('EmailJS order email failed:', error);
+    orderSubmissionInProgress = false;
+    if (checkoutButton) { checkoutButton.disabled = false; checkoutButton.textContent = checkoutButton.dataset.originalText || 'Continue to Revolut'; }
+    alert('Your order details could not be emailed to the store. Please try again or contact support@game-good-now.com. You have not been redirected to payment.');
+    return;
+  }
+
+  // Preserve the existing fixed Revolut destination. Email is an order request only;
+  // payment must be checked manually in Revolut before the order is confirmed.
+  alert(`Your order request ${orderNumber} has been sent to the store. Payment has not been verified. You will now be redirected to Revolut. Order total: €${total.toFixed(2)}.`);
+  window.location.href = REVOLUT_CHECKOUT_URL;
 }
 
 document.getElementById('year').textContent = new Date().getFullYear();
