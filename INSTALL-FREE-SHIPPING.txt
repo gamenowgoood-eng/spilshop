@@ -1,0 +1,18 @@
+GAME GOOD NOW — FREE SHIPPING UPDATE
+
+This update adds the following text to both featured products:
+FREE SHIPPING
+Estimated delivery: 4–7 days.
+
+It also updates the note below the featured offers.
+
+INSTALLATION
+1. Unzip this file.
+2. Open your GitHub repository.
+3. Open the existing index.html in the repository root.
+4. Replace its entire contents with the index.html from this ZIP.
+5. Commit the change.
+6. Wait for GitHub Pages to publish, then refresh https://game-good-now.com.
+
+This patch changes only index.html. It does not change product prices, images,
+cart behavior, payment settings, or EmailJS configuration.
