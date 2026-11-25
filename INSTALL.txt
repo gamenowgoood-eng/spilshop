@@ -1,13 +1,9 @@
-GAME GOOD NOW - CUSTOMER POLICIES
+GAME GOOD NOW – GTA VI AVAILABLE NOW UPDATE
 
-1. Open your GitHub repository containing the website.
-2. Upload GameGoodNow-policies-easy.html into the same root folder as index.html.
-3. Rename the uploaded file to policies.html in GitHub, or save it locally as policies.html before uploading.
-4. Commit the change.
-5. After GitHub Pages updates, open:
-   https://game-good-now.com/policies.html
+1. Download and unzip this file.
+2. Open your GitHub repository.
+3. Replace the existing index.html and script.js in the repository root with these two files.
+4. Commit the changes.
+5. Wait for GitHub Pages to publish, then refresh https://game-good-now.com/ (on iPhone, refresh or open a private tab if the old text is cached).
 
-IMPORTANT BEFORE PUBLISHING:
-Replace the seller identity, business address (if applicable), and returns address placeholders in the Contact section. Confirm the return process and legal disclosures are correct for the country where the seller is established and the countries served.
-
-This page is in English, mobile-friendly and does not change your homepage or checkout.
+This update changes the GTA VI product badge and description from pre-order/upcoming to available now, changes the cart item name to GTA VI (PS5), updates the six translated versions, and uses the EmailJS service ID shown in your screenshot. It keeps the two existing template IDs and the email workflow.
