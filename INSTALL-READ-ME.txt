@@ -1,0 +1,33 @@
+GAME GOOD NOW — FINAL EMAIL PATCH
+
+This update connects the two EmailJS templates using the IDs shown in your latest setup.
+
+TEMPLATE SETUP
+1) Store notification (email to you): template_cuoqobd
+   To Email: support@game-good-now.com
+   Reply To: {{customer_email}}
+
+2) Customer acknowledgement (email to customer): template_v9uyohy
+   To Email: {{customer_email}}
+   From Name: Game Good Now
+   Reply To: support@game-good-now.com
+
+Both templates should contain the order variables:
+{{order_number}}
+{{customer_name}}
+{{customer_email}}
+{{customer_phone}}
+{{shipping_address}}
+{{order_items}}
+{{order_total}}
+{{order_status}}
+
+INSTALL
+1) Back up your current script.js from GitHub.
+2) Open script.js in the ROOT of your GitHub repository.
+3) Replace its complete contents with the script.js in this ZIP.
+4) Commit/save the change and wait for GitHub Pages to publish.
+5) Test using your own email address as the customer email. Confirm that the store inbox receives the detailed order and that the customer inbox receives the acknowledgement.
+
+IMPORTANT
+The customer email confirms receipt of an order request only. It does NOT prove payment. Check the transaction in Revolut manually before treating the order as paid or dispatching it. This patch does not create an invoice or payment receipt.

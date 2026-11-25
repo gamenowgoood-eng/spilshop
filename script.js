@@ -191,20 +191,35 @@ async function confirmOrder() {
 
   try {
     if (!window.emailjs) throw new Error('EmailJS library did not load.');
-    await emailjs.send('service_ugj62eh', 'template_v9uyohy', templateParams, {
+    // First send the full order to the store inbox.
+    await emailjs.send('service_ugj62eh', 'template_cuoqobd', templateParams, {
       publicKey: 'S_AcPoR-Af1RxiYbc'
     });
   } catch (error) {
-    console.error('EmailJS order email failed:', error);
+    console.error('EmailJS store order email failed:', error);
     orderSubmissionInProgress = false;
     if (checkoutButton) { checkoutButton.disabled = false; checkoutButton.textContent = checkoutButton.dataset.originalText || 'Continue to Revolut'; }
     alert('Your order details could not be emailed to the store. Please try again or contact support@game-good-now.com. You have not been redirected to payment.');
     return;
   }
 
-  // Preserve the existing fixed Revolut destination. Email is an order request only;
-  // payment must be checked manually in Revolut before the order is confirmed.
-  alert(`Your order request ${orderNumber} has been sent to the store. Payment has not been verified. You will now be redirected to Revolut. Order total: €${total.toFixed(2)}.`);
+  // Then send the customer acknowledgement. This confirms receipt of the request,
+  // NOT payment. The store must still verify payment manually in Revolut.
+  let customerEmailSent = true;
+  try {
+    await emailjs.send('service_ugj62eh', 'template_v9uyohy', templateParams, {
+      publicKey: 'S_AcPoR-Af1RxiYbc'
+    });
+  } catch (error) {
+    customerEmailSent = false;
+    console.error('EmailJS customer acknowledgement failed:', error);
+  }
+
+  // Preserve the existing fixed Revolut destination. Payment must be checked manually.
+  const customerEmailNotice = customerEmailSent
+    ? 'A receipt email has been sent to your email address.'
+    : 'Your order was sent to the store, but the acknowledgement email could not be sent. Please contact support@game-good-now.com.';
+  alert(`Your order request ${orderNumber} has been sent to the store. Payment has not been verified. ${customerEmailNotice} You will now be redirected to Revolut. Order total: €${total.toFixed(2)}.`);
   window.location.href = REVOLUT_CHECKOUT_URL;
 }
 
