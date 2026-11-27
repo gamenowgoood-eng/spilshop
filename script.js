@@ -33,6 +33,50 @@ const products = [
 ];
 
 const CART_STORAGE_KEY = 'gamenowgood_cart_v2';
+
+// Shipping is charged on every item except the GTA VI offer and the PS5 + GTA VI bundle.
+const EUROPEAN_COUNTRIES = new Set([
+  'austria','belgium','bulgaria','croatia','cyprus','czechia','czech republic','denmark',
+  'estonia','finland','france','germany','greece','hungary','iceland','ireland','italy',
+  'latvia','liechtenstein','lithuania','luxembourg','malta','netherlands','norway','poland',
+  'portugal','romania','slovakia','slovenia','spain','sweden','switzerland','united kingdom',
+  'uk','great britain'
+]);
+const CARRIER_PRICES_EUR = { GLS: 8.99, DHL: 11.99, UPS: 13.99, FedEx: 15.99 };
+function isFreeShippingItem(item) {
+  const name = String(item.name || '').toLowerCase();
+  return name === 'gta vi (ps5)' || name === 'gta vi pre-order' || name === 'ps5 + gta vi bundle';
+}
+function getProductSubtotal() {
+  return cart.reduce((sum, item) => sum + Number(item.price) * Number(item.qty), 0);
+}
+function getShippingCost() {
+  const paidShippingItems = cart.filter(item => !isFreeShippingItem(item));
+  if (!paidShippingItems.length) return 0;
+  const carrier = document.getElementById('shipping-carrier')?.value || 'GLS';
+  return CARRIER_PRICES_EUR[carrier] || CARRIER_PRICES_EUR.GLS;
+}
+function refreshShippingUI() {
+  const group = document.getElementById('shipping-choice-group');
+  const summary = document.getElementById('checkout-shipping-total');
+  const country = (document.getElementById('country')?.value || '').trim().toLowerCase();
+  const hasPaidShippingItems = cart.some(item => !isFreeShippingItem(item));
+  const isEurope = EUROPEAN_COUNTRIES.has(country);
+  if (group) group.style.display = hasPaidShippingItems ? 'block' : 'none';
+  const carrier = document.getElementById('shipping-carrier');
+  if (carrier) {
+    // Carrier options are offered for European destinations only.
+    Array.from(carrier.options).forEach(option => {
+      option.hidden = !isEurope && option.value === 'GLS';
+    });
+    if (!isEurope && carrier.value === 'GLS') carrier.value = 'DHL';
+  }
+  const shipping = getShippingCost();
+  const total = getProductSubtotal() + shipping;
+  if (summary) summary.textContent = `Shipping: €${shipping.toFixed(2)} · Order total: €${total.toFixed(2)}`;
+  return { shipping, total, carrier: carrier?.value || 'Free shipping' };
+}
+
 let cart = loadCart();
 let activeFilter = 'all';
 const grid = document.getElementById('grid');
@@ -121,6 +165,7 @@ function updateCart() {
   itemsDiv.innerHTML = cart.map((item, index) => `<div class="cart-item">${item.img ? `<img src="${safeText(item.img)}" alt="">` : ''}<div class="cart-item-name"><b>${safeText(item.name)}</b><small>${money(item.price)} each</small></div><div class="qty-control"><button type="button" aria-label="Decrease quantity" onclick="changeQty(${index},-1)">−</button><span>${item.qty}</span><button type="button" aria-label="Increase quantity" onclick="changeQty(${index},1)">＋</button></div><strong>${money(item.price * item.qty)}</strong></div>`).join('') || `<p class="empty-cart">${({de:'Dein Warenkorb ist leer. Füge ein Produkt hinzu.',fr:'Votre panier est vide. Ajoutez un produit pour commencer.',zh:'购物车为空。请先添加商品。',es:'Tu carrito está vacío. Añade un producto para empezar.',ar:'سلتك فارغة. أضف منتجًا للبدء.',it:'Il carrello è vuoto. Aggiungi un prodotto per iniziare.'}[currentLanguage] || 'Your basket is empty. Add a product to get started.')}</p>`;
   const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
   document.getElementById('cart-total').textContent = `${({de:"Gesamt",fr:"Total",zh:"总计",es:"Total",ar:"الإجمالي",it:"Totale"}[currentLanguage] || "Total")}: ${money(total)}`;
+  refreshShippingUI();
   document.getElementById('show-checkout').disabled = cart.length === 0;
   saveCart();
 }
@@ -158,7 +203,8 @@ async function confirmOrder() {
   }
   if (!cart.length) { alert(({de:'Dein Warenkorb ist leer.',fr:'Votre panier est vide.',zh:'购物车为空。',es:'Tu carrito está vacío.',ar:'سلة التسوق فارغة.',it:'Il carrello è vuoto.'}[currentLanguage] || 'Your basket is empty.')); return; }
 
-  const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+  const shippingDetails = refreshShippingUI();
+  const total = shippingDetails.total;
   const orderNumber = `GGN-${Date.now()}`;
   const customerName = `${values.fname} ${values.lname}`;
   const phone = document.getElementById('phone').value.trim();
@@ -181,6 +227,8 @@ async function confirmOrder() {
     shipping_address: shippingAddress,
     order_items: orderItems,
     order_total: `€${total.toFixed(2)}`,
+    shipping_method: shippingDetails.carrier,
+    shipping_cost: `€${shippingDetails.shipping.toFixed(2)}`,
     order_status: 'Payment not yet verified — check Revolut manually',
     reply_to: values.email
   };
@@ -202,13 +250,15 @@ async function confirmOrder() {
     return;
   }
 
-  // Preserve the existing fixed Revolut destination. Email is an order request only;
-  // payment must be checked manually in Revolut before the order is confirmed.
-  alert(`Your order request ${orderNumber} has been sent to the store. Payment has not been verified. You will now be redirected to Revolut. Order total: €${total.toFixed(2)}.`);
-  window.location.href = REVOLUT_CHECKOUT_URL;
+  // The existing Revolut URL is a fixed payment link and cannot be given this dynamic total.
+  // Stop here rather than redirecting the customer to an incorrect amount.
+  alert(`Your order request ${orderNumber} has been sent to the store. Total including shipping: €${total.toFixed(2)}. Payment is not taken yet. The store must send a matching Revolut payment request.`);
+
 }
 
 document.getElementById('year').textContent = new Date().getFullYear();
+document.getElementById('country').addEventListener('input', refreshShippingUI);
+document.getElementById('shipping-carrier').addEventListener('change', refreshShippingUI);
 document.getElementById('lang-select').addEventListener('change', event => applyLanguage(event.target.value));
 document.getElementById('cart-modal').addEventListener('click', event => { if (event.target.id === 'cart-modal') closeCart(); });
 document.addEventListener('keydown', event => { if (event.key === 'Escape') closeCart(); });

@@ -10,6 +10,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <style>
+    #shipping-carrier{width:100%;padding:12px;border:1px solid rgba(255,255,255,.1);border-radius:9px;background:#0c1422;color:#fff;font-size:.82rem}
+    #shipping-carrier:focus{outline:1px solid #56e0d0}
+  </style>
 </head>
 <body>
   <div class="topline">GAME GOOD NOW <span>•</span> GAMES, CONSOLES & ACCESSORIES</div>
@@ -50,11 +54,11 @@
             <img src="offer-gta6-artwork.jpeg" alt="Grand Theft Auto VI artwork">
           </div>
           <div class="deal-copy offer-copy">
-            <span class="pill" data-i18n="preorder">PRE-ORDER LISTING</span>
+            <span class="pill" data-i18n="availableNow">AVAILABLE NOW</span>
             <h3>GTA VI (PS5)</h3>
-            <p data-i18n="upcoming">Upcoming release listing. Artwork and release details will be confirmed when officially available.</p>
-            <div class="deal-price">€59.99</div>
-            <button class="primary-btn" onclick="addDeal('GTA VI Pre-order',59.99,1)"><span data-i18n="addBasket">Add to basket</span> <span>＋</span></button>
+            <p data-i18n="gtaAvailable">GTA VI is available now.</p>
+            <div class="deal-price">€59.99</div><p class="small-note">🚚 Free shipping worldwide</p>
+            <button class="primary-btn" onclick="addDeal('GTA VI (PS5)',59.99,1)"><span data-i18n="addBasket">Add to basket</span> <span>＋</span></button>
           </div>
         </article>
         <article class="deal-card deal-console offer-card">
@@ -66,7 +70,7 @@
             <span class="pill" data-i18n="bundle">BUNDLE LISTING</span>
             <h3>PS5 + GTA VI</h3>
             <p data-i18n="bundleDesc">PlayStation 5 console with DualSense and GTA VI.</p>
-            <div class="deal-price"><del>€699</del> €579</div>
+            <div class="deal-price"><del>€699</del> €579</div><p class="small-note">🚚 Free shipping worldwide</p>
             <button class="primary-btn" onclick="addDeal('PS5 + GTA VI Bundle',579,1)"><span data-i18n="addBasket">Add to basket</span> <span>＋</span></button>
           </div>
         </article>
@@ -93,6 +97,8 @@
         <div class="form-row"><div class="form-group"><label for="fname" data-i18n="firstName">First name *</label><input id="fname" autocomplete="given-name" required></div><div class="form-group"><label for="lname" data-i18n="lastName">Last name *</label><input id="lname" autocomplete="family-name" required></div></div>
         <div class="form-group"><label for="email" data-i18n="email">Email *</label><input type="email" id="email" autocomplete="email" required></div><div class="form-group"><label for="phone" data-i18n="phone">Phone</label><input type="tel" id="phone" autocomplete="tel"></div><div class="form-group"><label for="address" data-i18n="address">Address *</label><input id="address" autocomplete="street-address" required></div>
         <div class="form-row"><div class="form-group"><label for="city" data-i18n="city">City *</label><input id="city" autocomplete="address-level2" required></div><div class="form-group"><label for="postal" data-i18n="postal">Postal code *</label><input id="postal" autocomplete="postal-code" required></div></div><div class="form-group"><label for="country" data-i18n="country">Country *</label><input id="country" autocomplete="country-name" value="Denmark" required></div>
+        <div id="shipping-choice-group" class="form-group" style="display:none"><label for="shipping-carrier">Shipping company (Europe)</label><select id="shipping-carrier"><option value="GLS">GLS — €8.99</option><option value="DHL">DHL — €11.99</option><option value="UPS">UPS — €13.99</option><option value="FedEx">FedEx — €15.99</option></select><small id="shipping-explanation" class="form-hint">Free shipping applies to GTA VI and the PS5 + GTA VI bundle.</small></div>
+        <p id="checkout-shipping-total" class="cart-total" style="font-size:1rem;text-align:left">Shipping: €0.00 · Order total: €0.00</p>
         <button class="primary-btn checkout-btn" type="button" onclick="confirmOrder()"><span data-i18n="continueRevolut">Continue to Revolut</span> <span>↗</span></button>
       </div>
       <button class="primary-btn checkout-btn" id="show-checkout" type="button" onclick="showCheckoutForm()"><span data-i18n="continueCheckout">Continue to checkout</span> <span>→</span></button><button class="clear-btn" type="button" onclick="clearCart()" data-i18n="clearBasket">Clear basket</button>
