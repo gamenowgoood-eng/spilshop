@@ -45,7 +45,7 @@ const EUROPEAN_COUNTRIES = new Set([
 const CARRIER_PRICES_EUR = { GLS: 8.99, DHL: 11.99, UPS: 13.99, FedEx: 15.99 };
 function isFreeShippingItem(item) {
   const name = String(item.name || '').toLowerCase();
-  return name === 'gta vi (ps5)' || name === 'gta vi pre-order' || name === 'ps5 + gta vi bundle';
+  return name === 'gta vi (ps5)' || name === 'ps5 + gta vi bundle';
 }
 function getProductSubtotal() {
   return cart.reduce((sum, item) => sum + Number(item.price) * Number(item.qty), 0);
@@ -73,7 +73,7 @@ function refreshShippingUI() {
   }
   const shipping = getShippingCost();
   const total = getProductSubtotal() + shipping;
-  if (summary) summary.textContent = `Shipping: €${shipping.toFixed(2)} · Order total: €${total.toFixed(2)}`;
+  if (summary) summary.textContent = `Shipping: ${shipping === 0 ? 'FREE' : `€${shipping.toFixed(2)}`} · Order total: €${total.toFixed(2)}`;
   return { shipping, total, carrier: carrier?.value || 'Free shipping' };
 }
 
