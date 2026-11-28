@@ -44,17 +44,21 @@ const EUROPEAN_COUNTRIES = new Set([
 ]);
 const CARRIER_PRICES_EUR = { GLS: 8.99, DHL: 11.99, UPS: 13.99, FedEx: 15.99 };
 function isFreeShippingItem(item) {
-  const name = String(item.name || '').toLowerCase();
+  // Free shipping applies only to the GTA VI standalone offer and the PS5 + GTA VI bundle.
+  // Normalize whitespace/case so saved basket entries still match reliably.
+  const name = String(item && item.name || '').trim().replace(/\\s+/g, ' ').toLowerCase();
   return name === 'gta vi (ps5)' || name === 'ps5 + gta vi bundle';
 }
 function getProductSubtotal() {
   return cart.reduce((sum, item) => sum + Number(item.price) * Number(item.qty), 0);
 }
 function getShippingCost() {
-  const paidShippingItems = cart.filter(item => !isFreeShippingItem(item));
-  if (!paidShippingItems.length) return 0;
-  const carrier = document.getElementById('shipping-carrier')?.value || 'GLS';
-  return CARRIER_PRICES_EUR[carrier] || CARRIER_PRICES_EUR.GLS;
+  // If every product in the basket is one of the two GTA offers, shipping is free.
+  // If any other product is present, the customer pays the selected carrier rate.
+  const hasChargeableProducts = cart.some(item => !isFreeShippingItem(item));
+  if (!hasChargeableProducts) return 0;
+  const carrier = document.getElementById('shipping-carrier')?.value || 'DHL';
+  return CARRIER_PRICES_EUR[carrier] || CARRIER_PRICES_EUR.DHL;
 }
 function refreshShippingUI() {
   const group = document.getElementById('shipping-choice-group');
@@ -74,7 +78,7 @@ function refreshShippingUI() {
   const shipping = getShippingCost();
   const total = getProductSubtotal() + shipping;
   if (summary) summary.textContent = `Shipping: ${shipping === 0 ? 'FREE' : `€${shipping.toFixed(2)}`} · Order total: €${total.toFixed(2)}`;
-  return { shipping, total, carrier: carrier?.value || 'Free shipping' };
+  return { shipping, total, carrier: shipping === 0 ? 'Free shipping' : (carrier?.value || 'DHL') };
 }
 
 let cart = loadCart();
